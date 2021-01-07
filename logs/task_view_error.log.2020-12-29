@@ -1,0 +1,9 @@
+2020-12-29 09:32:01 ERROR 489 views Result Get Error: Task_id, IP, IPs must one of them has data
+2020-12-29 11:41:25 ERROR 530 views Sync task and ip to database Error: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'hahaha122' for key 'PRIMARY'")
+[SQL: INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)]
+[parameters: {'id': 'hahaha122', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 11, 41, 24, 711066), 'modify_date': None}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+2020-12-29 14:02:07 ERROR 530 views Sync task and ip to database Error: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'hahaha12222222' for key 'PRIMARY'")
+[SQL: INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)]
+[parameters: {'id': 'hahaha12222222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 14, 2, 7, 460531), 'modify_date': None}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)

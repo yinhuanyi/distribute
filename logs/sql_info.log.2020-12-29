@@ -1,0 +1,2759 @@
+2020-12-29 09:25:15 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 09:25:15 INFO 1239 base {}
+2020-12-29 09:25:15 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 09:25:15 INFO 1239 base {}
+2020-12-29 09:25:15 INFO 1234 base SELECT DATABASE()
+2020-12-29 09:25:15 INFO 1239 base {}
+2020-12-29 09:25:16 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 09:25:16 INFO 1239 base {}
+2020-12-29 09:25:16 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 09:25:16 INFO 1341 base {}
+2020-12-29 09:25:16 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 09:25:16 INFO 1341 base {}
+2020-12-29 09:25:16 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 09:25:16 INFO 1341 base {}
+2020-12-29 09:25:17 INFO 1234 base DESCRIBE `task`
+2020-12-29 09:25:17 INFO 1239 base {}
+2020-12-29 09:25:17 INFO 1234 base DESCRIBE `asset`
+2020-12-29 09:25:17 INFO 1239 base {}
+2020-12-29 09:25:17 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 09:25:17 INFO 1239 base {}
+2020-12-29 09:25:17 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 09:25:17 INFO 1239 base {}
+2020-12-29 09:25:17 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 09:25:17 INFO 1239 base {}
+2020-12-29 09:25:18 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 09:25:18 INFO 1239 base {}
+2020-12-29 09:25:18 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 09:25:18 INFO 1239 base {}
+2020-12-29 09:25:18 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 09:25:18 INFO 1239 base {}
+2020-12-29 09:25:18 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 09:25:18 INFO 1239 base {}
+2020-12-29 09:25:18 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 09:25:18 INFO 1239 base {}
+2020-12-29 09:25:18 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 09:25:18 INFO 1239 base {}
+2020-12-29 09:25:18 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 09:25:18 INFO 1239 base {}
+2020-12-29 09:25:19 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 09:25:19 INFO 1239 base {}
+2020-12-29 09:25:19 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 09:25:19 INFO 1239 base {}
+2020-12-29 09:25:19 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 09:25:19 INFO 1239 base {}
+2020-12-29 09:25:19 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 09:25:19 INFO 1239 base {}
+2020-12-29 09:25:19 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 09:25:19 INFO 1239 base {}
+2020-12-29 09:25:19 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 09:25:19 INFO 1239 base {}
+2020-12-29 09:25:20 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 09:25:20 INFO 1239 base {}
+2020-12-29 09:25:20 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 09:25:20 INFO 1239 base {}
+2020-12-29 09:25:20 INFO 727 base BEGIN (implicit)
+2020-12-29 09:25:20 INFO 1234 base SELECT task.id AS task_id, task.name AS task_name, task.module AS task_module, task.args AS task_args, task.task_type AS task_task_type, task.created_date AS task_created_date, task.modify_date AS task_modify_date 
+FROM task 
+WHERE task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 09:25:20 INFO 1239 base {'id_1': 'ad1221sd121ss1df112', 'param_1': 1}
+2020-12-29 09:25:20 INFO 1234 base SELECT asset.result_table AS asset_result_table 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s GROUP BY asset.result_table
+2020-12-29 09:25:20 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df112'}
+2020-12-29 09:25:20 INFO 1234 base SELECT asset.id AS asset_id, asset.ip AS asset_ip 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s
+2020-12-29 09:25:20 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df112'}
+2020-12-29 09:25:21 INFO 1234 base SELECT shell_success.id AS shell_success_id, shell_success.asset_id AS shell_success_asset_id, shell_success.cmd AS shell_success_cmd, shell_success.stdout AS shell_success_stdout, shell_success.result AS shell_success_result, shell_success.created_date AS shell_success_created_date 
+FROM shell_success 
+WHERE shell_success.asset_id IN (%(asset_id_1)s, %(asset_id_2)s, %(asset_id_3)s, %(asset_id_4)s, %(asset_id_5)s, %(asset_id_6)s, %(asset_id_7)s, %(asset_id_8)s, %(asset_id_9)s, %(asset_id_10)s, %(asset_id_11)s, %(asset_id_12)s, %(asset_id_13)s, %(asset_id_14)s, %(asset_id_15)s, %(asset_id_16)s, %(asset_id_17)s, %(asset_id_18)s, %(asset_id_19)s, %(asset_id_20)s, %(asset_id_21)s, %(asset_id_22)s, %(asset_id_23)s, %(asset_id_24)s, %(asset_id_25)s, %(asset_id_26)s, %(asset_id_27)s, %(asset_id_28)s, %(asset_id_29)s, %(asset_id_30)s, %(asset_id_31)s, %(asset_id_32)s, %(asset_id_33)s, %(asset_id_34)s, %(asset_id_35)s, %(asset_id_36)s, %(asset_id_37)s, %(asset_id_38)s, %(asset_id_39)s)
+2020-12-29 09:25:21 INFO 1239 base {'asset_id_1': 3657, 'asset_id_2': 3658, 'asset_id_3': 3659, 'asset_id_4': 3660, 'asset_id_5': 3661, 'asset_id_6': 3662, 'asset_id_7': 3663, 'asset_id_8': 3664, 'asset_id_9': 3665, 'asset_id_10': 3666, 'asset_id_11': 3667, 'asset_id_12': 3668, 'asset_id_13': 3669, 'asset_id_14': 3670, 'asset_id_15': 3671, 'asset_id_16': 3672, 'asset_id_17': 3673, 'asset_id_18': 3674, 'asset_id_19': 3675, 'asset_id_20': 3676, 'asset_id_21': 3677, 'asset_id_22': 3678, 'asset_id_23': 3679, 'asset_id_24': 3680, 'asset_id_25': 3681, 'asset_id_26': 3682, 'asset_id_27': 3683, 'asset_id_28': 3684, 'asset_id_29': 3685, 'asset_id_30': 3686, 'asset_id_31': 3687, 'asset_id_32': 3688, 'asset_id_33': 3689, 'asset_id_34': 3690, 'asset_id_35': 3691, 'asset_id_36': 3692, 'asset_id_37': 3693, 'asset_id_38': 3694, 'asset_id_39': 3695}
+2020-12-29 09:25:21 INFO 747 base ROLLBACK
+2020-12-29 09:25:33 INFO 727 base BEGIN (implicit)
+2020-12-29 09:25:33 INFO 1234 base SELECT task.id AS task_id, task.name AS task_name, task.module AS task_module, task.args AS task_args, task.task_type AS task_task_type, task.created_date AS task_created_date, task.modify_date AS task_modify_date 
+FROM task 
+WHERE task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 09:25:34 INFO 1239 base {'id_1': 'ad1221sd121ss1df112', 'param_1': 1}
+2020-12-29 09:25:34 INFO 1234 base SELECT asset.result_table AS asset_result_table 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s GROUP BY asset.result_table
+2020-12-29 09:25:34 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df112'}
+2020-12-29 09:25:34 INFO 1234 base SELECT asset.id AS asset_id, asset.ip AS asset_ip 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s
+2020-12-29 09:25:34 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df112'}
+2020-12-29 09:25:34 INFO 1234 base SELECT shell_success.id AS shell_success_id, shell_success.asset_id AS shell_success_asset_id, shell_success.cmd AS shell_success_cmd, shell_success.stdout AS shell_success_stdout, shell_success.result AS shell_success_result, shell_success.created_date AS shell_success_created_date 
+FROM shell_success 
+WHERE shell_success.asset_id IN (%(asset_id_1)s, %(asset_id_2)s, %(asset_id_3)s, %(asset_id_4)s, %(asset_id_5)s, %(asset_id_6)s, %(asset_id_7)s, %(asset_id_8)s, %(asset_id_9)s, %(asset_id_10)s, %(asset_id_11)s, %(asset_id_12)s, %(asset_id_13)s, %(asset_id_14)s, %(asset_id_15)s, %(asset_id_16)s, %(asset_id_17)s, %(asset_id_18)s, %(asset_id_19)s, %(asset_id_20)s, %(asset_id_21)s, %(asset_id_22)s, %(asset_id_23)s, %(asset_id_24)s, %(asset_id_25)s, %(asset_id_26)s, %(asset_id_27)s, %(asset_id_28)s, %(asset_id_29)s, %(asset_id_30)s, %(asset_id_31)s, %(asset_id_32)s, %(asset_id_33)s, %(asset_id_34)s, %(asset_id_35)s, %(asset_id_36)s, %(asset_id_37)s, %(asset_id_38)s, %(asset_id_39)s)
+2020-12-29 09:25:34 INFO 1239 base {'asset_id_1': 3657, 'asset_id_2': 3658, 'asset_id_3': 3659, 'asset_id_4': 3660, 'asset_id_5': 3661, 'asset_id_6': 3662, 'asset_id_7': 3663, 'asset_id_8': 3664, 'asset_id_9': 3665, 'asset_id_10': 3666, 'asset_id_11': 3667, 'asset_id_12': 3668, 'asset_id_13': 3669, 'asset_id_14': 3670, 'asset_id_15': 3671, 'asset_id_16': 3672, 'asset_id_17': 3673, 'asset_id_18': 3674, 'asset_id_19': 3675, 'asset_id_20': 3676, 'asset_id_21': 3677, 'asset_id_22': 3678, 'asset_id_23': 3679, 'asset_id_24': 3680, 'asset_id_25': 3681, 'asset_id_26': 3682, 'asset_id_27': 3683, 'asset_id_28': 3684, 'asset_id_29': 3685, 'asset_id_30': 3686, 'asset_id_31': 3687, 'asset_id_32': 3688, 'asset_id_33': 3689, 'asset_id_34': 3690, 'asset_id_35': 3691, 'asset_id_36': 3692, 'asset_id_37': 3693, 'asset_id_38': 3694, 'asset_id_39': 3695}
+2020-12-29 09:25:34 INFO 747 base ROLLBACK
+2020-12-29 09:39:25 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 09:39:25 INFO 1239 base {}
+2020-12-29 09:39:25 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 09:39:25 INFO 1239 base {}
+2020-12-29 09:39:26 INFO 1234 base SELECT DATABASE()
+2020-12-29 09:39:26 INFO 1239 base {}
+2020-12-29 09:39:26 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 09:39:26 INFO 1239 base {}
+2020-12-29 09:39:26 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 09:39:26 INFO 1341 base {}
+2020-12-29 09:39:26 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 09:39:26 INFO 1341 base {}
+2020-12-29 09:39:26 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 09:39:26 INFO 1341 base {}
+2020-12-29 09:39:27 INFO 1234 base DESCRIBE `task`
+2020-12-29 09:39:27 INFO 1239 base {}
+2020-12-29 09:39:27 INFO 1234 base DESCRIBE `asset`
+2020-12-29 09:39:27 INFO 1239 base {}
+2020-12-29 09:39:27 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 09:39:27 INFO 1239 base {}
+2020-12-29 09:39:27 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 09:39:27 INFO 1239 base {}
+2020-12-29 09:39:28 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 09:39:28 INFO 1239 base {}
+2020-12-29 09:39:28 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 09:39:28 INFO 1239 base {}
+2020-12-29 09:39:28 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 09:39:28 INFO 1239 base {}
+2020-12-29 09:39:28 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 09:39:28 INFO 1239 base {}
+2020-12-29 09:39:28 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 09:39:28 INFO 1239 base {}
+2020-12-29 09:39:28 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 09:39:28 INFO 1239 base {}
+2020-12-29 09:39:29 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 09:39:29 INFO 1239 base {}
+2020-12-29 09:39:29 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 09:39:29 INFO 1239 base {}
+2020-12-29 09:39:29 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 09:39:29 INFO 1239 base {}
+2020-12-29 09:39:29 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 09:39:29 INFO 1239 base {}
+2020-12-29 09:39:30 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 09:39:30 INFO 1239 base {}
+2020-12-29 09:39:30 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 09:39:30 INFO 1239 base {}
+2020-12-29 09:39:30 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 09:39:30 INFO 1239 base {}
+2020-12-29 09:39:30 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 09:39:30 INFO 1239 base {}
+2020-12-29 09:39:31 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 09:39:31 INFO 1239 base {}
+2020-12-29 09:39:31 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 09:39:31 INFO 1239 base {}
+2020-12-29 09:39:31 INFO 727 base BEGIN (implicit)
+2020-12-29 09:39:31 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s)
+2020-12-29 09:39:31 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2'}
+2020-12-29 09:56:45 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 09:56:45 INFO 1239 base {}
+2020-12-29 09:56:45 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 09:56:45 INFO 1239 base {}
+2020-12-29 09:56:46 INFO 1234 base SELECT DATABASE()
+2020-12-29 09:56:46 INFO 1239 base {}
+2020-12-29 09:56:46 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 09:56:46 INFO 1239 base {}
+2020-12-29 09:56:46 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 09:56:46 INFO 1341 base {}
+2020-12-29 09:56:46 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 09:56:46 INFO 1341 base {}
+2020-12-29 09:56:46 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 09:56:46 INFO 1341 base {}
+2020-12-29 09:56:47 INFO 1234 base DESCRIBE `task`
+2020-12-29 09:56:47 INFO 1239 base {}
+2020-12-29 09:56:47 INFO 1234 base DESCRIBE `asset`
+2020-12-29 09:56:47 INFO 1239 base {}
+2020-12-29 09:56:47 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 09:56:47 INFO 1239 base {}
+2020-12-29 09:56:47 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 09:56:47 INFO 1239 base {}
+2020-12-29 09:56:48 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 09:56:48 INFO 1239 base {}
+2020-12-29 09:56:48 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 09:56:48 INFO 1239 base {}
+2020-12-29 09:56:48 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 09:56:48 INFO 1239 base {}
+2020-12-29 09:56:48 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 09:56:48 INFO 1239 base {}
+2020-12-29 09:56:48 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 09:56:48 INFO 1239 base {}
+2020-12-29 09:56:48 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 09:56:48 INFO 1239 base {}
+2020-12-29 09:56:48 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 09:56:48 INFO 1239 base {}
+2020-12-29 09:56:49 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 09:56:49 INFO 1239 base {}
+2020-12-29 09:56:49 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 09:56:49 INFO 1239 base {}
+2020-12-29 09:56:49 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 09:56:49 INFO 1239 base {}
+2020-12-29 09:56:49 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 09:56:49 INFO 1239 base {}
+2020-12-29 09:56:49 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 09:56:49 INFO 1239 base {}
+2020-12-29 09:56:49 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 09:56:49 INFO 1239 base {}
+2020-12-29 09:56:50 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 09:56:50 INFO 1239 base {}
+2020-12-29 09:56:50 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 09:56:50 INFO 1239 base {}
+2020-12-29 09:56:50 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 09:56:50 INFO 1239 base {}
+2020-12-29 09:56:50 INFO 727 base BEGIN (implicit)
+2020-12-29 09:56:50 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 09:56:50 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 09:58:12 INFO 1234 base SELECT playbook_copy_fail.id AS playbook_copy_fail_id, playbook_copy_fail.asset_id AS playbook_copy_fail_asset_id, playbook_copy_fail.result AS playbook_copy_fail_result, playbook_copy_fail.created_date AS playbook_copy_fail_created_date 
+FROM playbook_copy_fail 
+WHERE %(param_1)s = playbook_copy_fail.asset_id
+2020-12-29 09:58:12 INFO 1239 base {'param_1': 22}
+2020-12-29 09:58:12 INFO 1234 base SELECT playbook_copy_success.id AS playbook_copy_success_id, playbook_copy_success.asset_id AS playbook_copy_success_asset_id, playbook_copy_success.result AS playbook_copy_success_result, playbook_copy_success.created_date AS playbook_copy_success_created_date 
+FROM playbook_copy_success 
+WHERE %(param_1)s = playbook_copy_success.asset_id
+2020-12-29 09:58:12 INFO 1239 base {'param_1': 22}
+2020-12-29 09:58:12 INFO 1234 base SELECT playbook_exec_timeout.id AS playbook_exec_timeout_id, playbook_exec_timeout.asset_id AS playbook_exec_timeout_asset_id, playbook_exec_timeout.result AS playbook_exec_timeout_result, playbook_exec_timeout.created_date AS playbook_exec_timeout_created_date 
+FROM playbook_exec_timeout 
+WHERE %(param_1)s = playbook_exec_timeout.asset_id
+2020-12-29 09:58:12 INFO 1239 base {'param_1': 22}
+2020-12-29 09:58:12 INFO 1234 base SELECT playbook_shell_fail.id AS playbook_shell_fail_id, playbook_shell_fail.asset_id AS playbook_shell_fail_asset_id, playbook_shell_fail.result AS playbook_shell_fail_result, playbook_shell_fail.created_date AS playbook_shell_fail_created_date 
+FROM playbook_shell_fail 
+WHERE %(param_1)s = playbook_shell_fail.asset_id
+2020-12-29 09:58:12 INFO 1239 base {'param_1': 22}
+2020-12-29 09:58:13 INFO 1234 base SELECT playbook_shell_success.id AS playbook_shell_success_id, playbook_shell_success.asset_id AS playbook_shell_success_asset_id, playbook_shell_success.result AS playbook_shell_success_result, playbook_shell_success.created_date AS playbook_shell_success_created_date 
+FROM playbook_shell_success 
+WHERE %(param_1)s = playbook_shell_success.asset_id
+2020-12-29 09:58:13 INFO 1239 base {'param_1': 22}
+2020-12-29 09:58:13 INFO 1234 base SELECT playbook_task.id AS playbook_task_id, playbook_task.name AS playbook_task_name, playbook_task.playbook_content AS playbook_task_playbook_content, playbook_task.playbook_name AS playbook_task_playbook_name, playbook_task.task_type AS playbook_task_task_type, playbook_task.created_date AS playbook_task_created_date, playbook_task.modify_date AS playbook_task_modify_date 
+FROM playbook_task 
+WHERE playbook_task.id = %(param_1)s
+2020-12-29 09:58:13 INFO 1239 base {'param_1': 'hahaha122'}
+2020-12-29 09:58:13 INFO 1234 base SELECT playbook_unarchive_fail.id AS playbook_unarchive_fail_id, playbook_unarchive_fail.asset_id AS playbook_unarchive_fail_asset_id, playbook_unarchive_fail.result AS playbook_unarchive_fail_result, playbook_unarchive_fail.created_date AS playbook_unarchive_fail_created_date 
+FROM playbook_unarchive_fail 
+WHERE %(param_1)s = playbook_unarchive_fail.asset_id
+2020-12-29 09:58:13 INFO 1239 base {'param_1': 22}
+2020-12-29 09:58:13 INFO 1234 base SELECT playbook_unarchive_success.id AS playbook_unarchive_success_id, playbook_unarchive_success.asset_id AS playbook_unarchive_success_asset_id, playbook_unarchive_success.result AS playbook_unarchive_success_result, playbook_unarchive_success.created_date AS playbook_unarchive_success_created_date 
+FROM playbook_unarchive_success 
+WHERE %(param_1)s = playbook_unarchive_success.asset_id
+2020-12-29 09:58:13 INFO 1239 base {'param_1': 22}
+2020-12-29 09:58:13 INFO 1234 base SELECT playbook_unreachable.id AS playbook_unreachable_id, playbook_unreachable.asset_id AS playbook_unreachable_asset_id, playbook_unreachable.result AS playbook_unreachable_result, playbook_unreachable.created_date AS playbook_unreachable_created_date 
+FROM playbook_unreachable 
+WHERE %(param_1)s = playbook_unreachable.asset_id
+2020-12-29 09:58:13 INFO 1239 base {'param_1': 22}
+2020-12-29 10:00:53 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 10:00:53 INFO 1239 base {}
+2020-12-29 10:00:53 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 10:00:53 INFO 1239 base {}
+2020-12-29 10:00:53 INFO 1234 base SELECT DATABASE()
+2020-12-29 10:00:53 INFO 1239 base {}
+2020-12-29 10:00:54 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 10:00:54 INFO 1239 base {}
+2020-12-29 10:00:54 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:00:54 INFO 1341 base {}
+2020-12-29 10:00:54 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:00:54 INFO 1341 base {}
+2020-12-29 10:00:54 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 10:00:54 INFO 1341 base {}
+2020-12-29 10:00:55 INFO 1234 base DESCRIBE `task`
+2020-12-29 10:00:55 INFO 1239 base {}
+2020-12-29 10:00:55 INFO 1234 base DESCRIBE `asset`
+2020-12-29 10:00:55 INFO 1239 base {}
+2020-12-29 10:00:55 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 10:00:55 INFO 1239 base {}
+2020-12-29 10:00:55 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 10:00:55 INFO 1239 base {}
+2020-12-29 10:00:55 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 10:00:55 INFO 1239 base {}
+2020-12-29 10:00:55 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 10:00:55 INFO 1239 base {}
+2020-12-29 10:00:55 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 10:00:55 INFO 1239 base {}
+2020-12-29 10:00:56 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 10:00:56 INFO 1239 base {}
+2020-12-29 10:00:56 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 10:00:56 INFO 1239 base {}
+2020-12-29 10:00:56 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 10:00:56 INFO 1239 base {}
+2020-12-29 10:00:56 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 10:00:56 INFO 1239 base {}
+2020-12-29 10:00:56 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 10:00:56 INFO 1239 base {}
+2020-12-29 10:00:56 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 10:00:56 INFO 1239 base {}
+2020-12-29 10:00:57 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 10:00:57 INFO 1239 base {}
+2020-12-29 10:00:57 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 10:00:57 INFO 1239 base {}
+2020-12-29 10:00:57 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 10:00:57 INFO 1239 base {}
+2020-12-29 10:00:57 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 10:00:57 INFO 1239 base {}
+2020-12-29 10:00:57 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 10:00:57 INFO 1239 base {}
+2020-12-29 10:00:57 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 10:00:57 INFO 1239 base {}
+2020-12-29 10:00:58 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 10:00:58 INFO 1239 base {}
+2020-12-29 10:00:58 INFO 727 base BEGIN (implicit)
+2020-12-29 10:00:58 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 10:00:58 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 10:02:01 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 10:02:01 INFO 1239 base {}
+2020-12-29 10:02:01 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 10:02:01 INFO 1239 base {}
+2020-12-29 10:02:02 INFO 1234 base SELECT DATABASE()
+2020-12-29 10:02:02 INFO 1239 base {}
+2020-12-29 10:02:02 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 10:02:02 INFO 1239 base {}
+2020-12-29 10:02:02 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:02:02 INFO 1341 base {}
+2020-12-29 10:02:02 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:02:02 INFO 1341 base {}
+2020-12-29 10:02:03 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 10:02:03 INFO 1341 base {}
+2020-12-29 10:02:03 INFO 1234 base DESCRIBE `task`
+2020-12-29 10:02:03 INFO 1239 base {}
+2020-12-29 10:02:03 INFO 1234 base DESCRIBE `asset`
+2020-12-29 10:02:03 INFO 1239 base {}
+2020-12-29 10:02:03 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 10:02:03 INFO 1239 base {}
+2020-12-29 10:02:04 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 10:02:04 INFO 1239 base {}
+2020-12-29 10:02:04 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 10:02:04 INFO 1239 base {}
+2020-12-29 10:02:04 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 10:02:04 INFO 1239 base {}
+2020-12-29 10:02:04 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 10:02:04 INFO 1239 base {}
+2020-12-29 10:02:04 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 10:02:04 INFO 1239 base {}
+2020-12-29 10:02:04 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 10:02:04 INFO 1239 base {}
+2020-12-29 10:02:05 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 10:02:05 INFO 1239 base {}
+2020-12-29 10:02:05 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 10:02:05 INFO 1239 base {}
+2020-12-29 10:02:05 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 10:02:05 INFO 1239 base {}
+2020-12-29 10:02:05 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 10:02:05 INFO 1239 base {}
+2020-12-29 10:02:05 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 10:02:05 INFO 1239 base {}
+2020-12-29 10:02:05 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 10:02:05 INFO 1239 base {}
+2020-12-29 10:02:06 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 10:02:06 INFO 1239 base {}
+2020-12-29 10:02:06 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 10:02:06 INFO 1239 base {}
+2020-12-29 10:02:06 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 10:02:06 INFO 1239 base {}
+2020-12-29 10:02:06 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 10:02:06 INFO 1239 base {}
+2020-12-29 10:02:06 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 10:02:06 INFO 1239 base {}
+2020-12-29 10:02:07 INFO 727 base BEGIN (implicit)
+2020-12-29 10:02:07 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 10:02:07 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 10:25:19 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 10:25:19 INFO 1239 base {}
+2020-12-29 10:25:19 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 10:25:19 INFO 1239 base {}
+2020-12-29 10:25:19 INFO 1234 base SELECT DATABASE()
+2020-12-29 10:25:19 INFO 1239 base {}
+2020-12-29 10:25:20 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 10:25:20 INFO 1239 base {}
+2020-12-29 10:25:20 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:25:20 INFO 1341 base {}
+2020-12-29 10:25:20 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:25:20 INFO 1341 base {}
+2020-12-29 10:25:20 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 10:25:20 INFO 1341 base {}
+2020-12-29 10:25:20 INFO 1234 base DESCRIBE `task`
+2020-12-29 10:25:20 INFO 1239 base {}
+2020-12-29 10:25:21 INFO 1234 base DESCRIBE `asset`
+2020-12-29 10:25:21 INFO 1239 base {}
+2020-12-29 10:25:21 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 10:25:21 INFO 1239 base {}
+2020-12-29 10:25:21 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 10:25:21 INFO 1239 base {}
+2020-12-29 10:25:21 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 10:25:21 INFO 1239 base {}
+2020-12-29 10:25:21 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 10:25:21 INFO 1239 base {}
+2020-12-29 10:25:21 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 10:25:21 INFO 1239 base {}
+2020-12-29 10:25:22 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 10:25:22 INFO 1239 base {}
+2020-12-29 10:25:22 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 10:25:22 INFO 1239 base {}
+2020-12-29 10:25:22 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 10:25:22 INFO 1239 base {}
+2020-12-29 10:25:22 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 10:25:22 INFO 1239 base {}
+2020-12-29 10:25:22 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 10:25:22 INFO 1239 base {}
+2020-12-29 10:25:22 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 10:25:22 INFO 1239 base {}
+2020-12-29 10:25:23 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 10:25:23 INFO 1239 base {}
+2020-12-29 10:25:23 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 10:25:23 INFO 1239 base {}
+2020-12-29 10:25:23 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 10:25:23 INFO 1239 base {}
+2020-12-29 10:25:23 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 10:25:23 INFO 1239 base {}
+2020-12-29 10:25:23 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 10:25:23 INFO 1239 base {}
+2020-12-29 10:25:23 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 10:25:23 INFO 1239 base {}
+2020-12-29 10:25:24 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 10:25:24 INFO 1239 base {}
+2020-12-29 10:25:24 INFO 727 base BEGIN (implicit)
+2020-12-29 10:25:24 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 10:25:24 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 10:25:24 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 10:25:24 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 10:35:02 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 10:35:02 INFO 1239 base {}
+2020-12-29 10:35:02 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 10:35:02 INFO 1239 base {}
+2020-12-29 10:35:02 INFO 1234 base SELECT DATABASE()
+2020-12-29 10:35:02 INFO 1239 base {}
+2020-12-29 10:35:03 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 10:35:03 INFO 1239 base {}
+2020-12-29 10:35:03 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:35:03 INFO 1341 base {}
+2020-12-29 10:35:03 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:35:03 INFO 1341 base {}
+2020-12-29 10:35:03 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 10:35:03 INFO 1341 base {}
+2020-12-29 10:35:04 INFO 1234 base DESCRIBE `task`
+2020-12-29 10:35:04 INFO 1239 base {}
+2020-12-29 10:35:04 INFO 1234 base DESCRIBE `asset`
+2020-12-29 10:35:04 INFO 1239 base {}
+2020-12-29 10:35:04 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 10:35:04 INFO 1239 base {}
+2020-12-29 10:35:04 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 10:35:04 INFO 1239 base {}
+2020-12-29 10:35:04 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 10:35:04 INFO 1239 base {}
+2020-12-29 10:35:05 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 10:35:05 INFO 1239 base {}
+2020-12-29 10:35:05 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 10:35:05 INFO 1239 base {}
+2020-12-29 10:35:05 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 10:35:05 INFO 1239 base {}
+2020-12-29 10:35:05 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 10:35:05 INFO 1239 base {}
+2020-12-29 10:35:05 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 10:35:05 INFO 1239 base {}
+2020-12-29 10:35:06 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 10:35:06 INFO 1239 base {}
+2020-12-29 10:35:06 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 10:35:06 INFO 1239 base {}
+2020-12-29 10:35:06 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 10:35:06 INFO 1239 base {}
+2020-12-29 10:35:06 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 10:35:06 INFO 1239 base {}
+2020-12-29 10:35:06 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 10:35:06 INFO 1239 base {}
+2020-12-29 10:35:06 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 10:35:06 INFO 1239 base {}
+2020-12-29 10:35:07 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 10:35:07 INFO 1239 base {}
+2020-12-29 10:35:07 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 10:35:07 INFO 1239 base {}
+2020-12-29 10:35:07 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 10:35:07 INFO 1239 base {}
+2020-12-29 10:35:07 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 10:35:07 INFO 1239 base {}
+2020-12-29 10:35:07 INFO 727 base BEGIN (implicit)
+2020-12-29 10:35:07 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 10:35:07 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 10:35:07 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 10:35:07 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 10:35:59 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 10:35:59 INFO 1239 base {}
+2020-12-29 10:35:59 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 10:35:59 INFO 1239 base {}
+2020-12-29 10:35:59 INFO 1234 base SELECT DATABASE()
+2020-12-29 10:35:59 INFO 1239 base {}
+2020-12-29 10:35:59 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 10:35:59 INFO 1239 base {}
+2020-12-29 10:36:00 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:36:00 INFO 1341 base {}
+2020-12-29 10:36:00 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:36:00 INFO 1341 base {}
+2020-12-29 10:36:00 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 10:36:00 INFO 1341 base {}
+2020-12-29 10:36:00 INFO 1234 base DESCRIBE `task`
+2020-12-29 10:36:00 INFO 1239 base {}
+2020-12-29 10:36:01 INFO 1234 base DESCRIBE `asset`
+2020-12-29 10:36:01 INFO 1239 base {}
+2020-12-29 10:36:01 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 10:36:01 INFO 1239 base {}
+2020-12-29 10:36:01 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 10:36:01 INFO 1239 base {}
+2020-12-29 10:36:01 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 10:36:01 INFO 1239 base {}
+2020-12-29 10:36:01 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 10:36:01 INFO 1239 base {}
+2020-12-29 10:36:01 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 10:36:01 INFO 1239 base {}
+2020-12-29 10:36:02 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 10:36:02 INFO 1239 base {}
+2020-12-29 10:36:02 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 10:36:02 INFO 1239 base {}
+2020-12-29 10:36:02 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 10:36:02 INFO 1239 base {}
+2020-12-29 10:36:02 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 10:36:02 INFO 1239 base {}
+2020-12-29 10:36:02 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 10:36:02 INFO 1239 base {}
+2020-12-29 10:36:02 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 10:36:02 INFO 1239 base {}
+2020-12-29 10:36:03 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 10:36:03 INFO 1239 base {}
+2020-12-29 10:36:03 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 10:36:03 INFO 1239 base {}
+2020-12-29 10:36:03 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 10:36:03 INFO 1239 base {}
+2020-12-29 10:36:03 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 10:36:03 INFO 1239 base {}
+2020-12-29 10:36:03 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 10:36:03 INFO 1239 base {}
+2020-12-29 10:36:03 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 10:36:03 INFO 1239 base {}
+2020-12-29 10:36:03 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 10:36:03 INFO 1239 base {}
+2020-12-29 10:36:04 INFO 727 base BEGIN (implicit)
+2020-12-29 10:36:04 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 10:36:04 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 10:36:04 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 10:36:04 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 10:38:53 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 10:38:53 INFO 1239 base {}
+2020-12-29 10:38:54 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 10:38:54 INFO 1239 base {}
+2020-12-29 10:38:54 INFO 1234 base SELECT DATABASE()
+2020-12-29 10:38:54 INFO 1239 base {}
+2020-12-29 10:38:54 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 10:38:54 INFO 1239 base {}
+2020-12-29 10:38:54 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:38:54 INFO 1341 base {}
+2020-12-29 10:38:55 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:38:55 INFO 1341 base {}
+2020-12-29 10:38:55 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 10:38:55 INFO 1341 base {}
+2020-12-29 10:38:55 INFO 1234 base DESCRIBE `task`
+2020-12-29 10:38:55 INFO 1239 base {}
+2020-12-29 10:38:55 INFO 1234 base DESCRIBE `asset`
+2020-12-29 10:38:55 INFO 1239 base {}
+2020-12-29 10:38:56 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 10:38:56 INFO 1239 base {}
+2020-12-29 10:38:56 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 10:38:56 INFO 1239 base {}
+2020-12-29 10:38:56 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 10:38:56 INFO 1239 base {}
+2020-12-29 10:38:56 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 10:38:56 INFO 1239 base {}
+2020-12-29 10:38:56 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 10:38:56 INFO 1239 base {}
+2020-12-29 10:38:56 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 10:38:56 INFO 1239 base {}
+2020-12-29 10:38:57 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 10:38:57 INFO 1239 base {}
+2020-12-29 10:38:57 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 10:38:57 INFO 1239 base {}
+2020-12-29 10:38:57 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 10:38:57 INFO 1239 base {}
+2020-12-29 10:38:57 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 10:38:57 INFO 1239 base {}
+2020-12-29 10:38:57 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 10:38:57 INFO 1239 base {}
+2020-12-29 10:38:57 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 10:38:57 INFO 1239 base {}
+2020-12-29 10:38:58 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 10:38:58 INFO 1239 base {}
+2020-12-29 10:38:58 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 10:38:58 INFO 1239 base {}
+2020-12-29 10:38:58 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 10:38:58 INFO 1239 base {}
+2020-12-29 10:38:58 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 10:38:58 INFO 1239 base {}
+2020-12-29 10:38:58 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 10:38:58 INFO 1239 base {}
+2020-12-29 10:38:58 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 10:38:58 INFO 1239 base {}
+2020-12-29 10:38:59 INFO 727 base BEGIN (implicit)
+2020-12-29 10:38:59 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 10:38:59 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 10:38:59 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 10:38:59 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 10:38:59 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 10:38:59 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 10:40:50 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 10:40:50 INFO 1239 base {}
+2020-12-29 10:40:50 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 10:40:50 INFO 1239 base {}
+2020-12-29 10:40:50 INFO 1234 base SELECT DATABASE()
+2020-12-29 10:40:50 INFO 1239 base {}
+2020-12-29 10:40:51 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 10:40:51 INFO 1239 base {}
+2020-12-29 10:40:51 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:40:51 INFO 1341 base {}
+2020-12-29 10:40:51 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 10:40:51 INFO 1341 base {}
+2020-12-29 10:40:51 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 10:40:51 INFO 1341 base {}
+2020-12-29 10:40:52 INFO 1234 base DESCRIBE `task`
+2020-12-29 10:40:52 INFO 1239 base {}
+2020-12-29 10:40:52 INFO 1234 base DESCRIBE `asset`
+2020-12-29 10:40:52 INFO 1239 base {}
+2020-12-29 10:40:52 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 10:40:52 INFO 1239 base {}
+2020-12-29 10:40:52 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 10:40:52 INFO 1239 base {}
+2020-12-29 10:40:52 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 10:40:52 INFO 1239 base {}
+2020-12-29 10:40:53 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 10:40:53 INFO 1239 base {}
+2020-12-29 10:40:53 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 10:40:53 INFO 1239 base {}
+2020-12-29 10:40:53 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 10:40:53 INFO 1239 base {}
+2020-12-29 10:40:53 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 10:40:53 INFO 1239 base {}
+2020-12-29 10:40:53 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 10:40:53 INFO 1239 base {}
+2020-12-29 10:40:53 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 10:40:53 INFO 1239 base {}
+2020-12-29 10:40:54 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 10:40:54 INFO 1239 base {}
+2020-12-29 10:40:54 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 10:40:54 INFO 1239 base {}
+2020-12-29 10:40:54 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 10:40:54 INFO 1239 base {}
+2020-12-29 10:40:54 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 10:40:54 INFO 1239 base {}
+2020-12-29 10:40:54 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 10:40:54 INFO 1239 base {}
+2020-12-29 10:40:54 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 10:40:54 INFO 1239 base {}
+2020-12-29 10:40:55 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 10:40:55 INFO 1239 base {}
+2020-12-29 10:40:55 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 10:40:55 INFO 1239 base {}
+2020-12-29 10:40:55 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 10:40:55 INFO 1239 base {}
+2020-12-29 10:41:04 INFO 727 base BEGIN (implicit)
+2020-12-29 10:41:04 INFO 1234 base SELECT task.id AS task_id, task.name AS task_name, task.module AS task_module, task.args AS task_args, task.task_type AS task_task_type, task.created_date AS task_created_date, task.modify_date AS task_modify_date 
+FROM task 
+WHERE task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 10:41:04 INFO 1239 base {'id_1': 'ad1221sd121ss1df112', 'param_1': 1}
+2020-12-29 10:41:04 INFO 1234 base SELECT asset.result_table AS asset_result_table 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s GROUP BY asset.result_table
+2020-12-29 10:41:04 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df112'}
+2020-12-29 10:41:04 INFO 1234 base SELECT asset.id AS asset_id, asset.ip AS asset_ip 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s
+2020-12-29 10:41:04 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df112'}
+2020-12-29 10:41:05 INFO 1234 base SELECT shell_success.id AS shell_success_id, shell_success.asset_id AS shell_success_asset_id, shell_success.cmd AS shell_success_cmd, shell_success.stdout AS shell_success_stdout, shell_success.result AS shell_success_result, shell_success.created_date AS shell_success_created_date 
+FROM shell_success 
+WHERE shell_success.asset_id IN (%(asset_id_1)s, %(asset_id_2)s, %(asset_id_3)s, %(asset_id_4)s, %(asset_id_5)s, %(asset_id_6)s, %(asset_id_7)s, %(asset_id_8)s, %(asset_id_9)s, %(asset_id_10)s, %(asset_id_11)s, %(asset_id_12)s, %(asset_id_13)s, %(asset_id_14)s, %(asset_id_15)s, %(asset_id_16)s, %(asset_id_17)s, %(asset_id_18)s, %(asset_id_19)s, %(asset_id_20)s, %(asset_id_21)s, %(asset_id_22)s, %(asset_id_23)s, %(asset_id_24)s, %(asset_id_25)s, %(asset_id_26)s, %(asset_id_27)s, %(asset_id_28)s, %(asset_id_29)s, %(asset_id_30)s, %(asset_id_31)s, %(asset_id_32)s, %(asset_id_33)s, %(asset_id_34)s, %(asset_id_35)s, %(asset_id_36)s, %(asset_id_37)s, %(asset_id_38)s, %(asset_id_39)s)
+2020-12-29 10:41:05 INFO 1239 base {'asset_id_1': 3657, 'asset_id_2': 3658, 'asset_id_3': 3659, 'asset_id_4': 3660, 'asset_id_5': 3661, 'asset_id_6': 3662, 'asset_id_7': 3663, 'asset_id_8': 3664, 'asset_id_9': 3665, 'asset_id_10': 3666, 'asset_id_11': 3667, 'asset_id_12': 3668, 'asset_id_13': 3669, 'asset_id_14': 3670, 'asset_id_15': 3671, 'asset_id_16': 3672, 'asset_id_17': 3673, 'asset_id_18': 3674, 'asset_id_19': 3675, 'asset_id_20': 3676, 'asset_id_21': 3677, 'asset_id_22': 3678, 'asset_id_23': 3679, 'asset_id_24': 3680, 'asset_id_25': 3681, 'asset_id_26': 3682, 'asset_id_27': 3683, 'asset_id_28': 3684, 'asset_id_29': 3685, 'asset_id_30': 3686, 'asset_id_31': 3687, 'asset_id_32': 3688, 'asset_id_33': 3689, 'asset_id_34': 3690, 'asset_id_35': 3691, 'asset_id_36': 3692, 'asset_id_37': 3693, 'asset_id_38': 3694, 'asset_id_39': 3695}
+2020-12-29 10:41:05 INFO 747 base ROLLBACK
+2020-12-29 11:09:54 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:09:54 INFO 1239 base {}
+2020-12-29 11:09:55 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:09:55 INFO 1239 base {}
+2020-12-29 11:09:55 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:09:55 INFO 1239 base {}
+2020-12-29 11:09:55 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:09:55 INFO 1239 base {}
+2020-12-29 11:09:55 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:09:55 INFO 1341 base {}
+2020-12-29 11:09:55 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:09:55 INFO 1341 base {}
+2020-12-29 11:09:56 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:09:56 INFO 1341 base {}
+2020-12-29 11:09:56 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:09:56 INFO 1239 base {}
+2020-12-29 11:09:56 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:09:56 INFO 1239 base {}
+2020-12-29 11:09:56 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:09:56 INFO 1239 base {}
+2020-12-29 11:09:57 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:09:57 INFO 1239 base {}
+2020-12-29 11:09:57 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:09:57 INFO 1239 base {}
+2020-12-29 11:09:57 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:09:57 INFO 1239 base {}
+2020-12-29 11:09:57 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:09:57 INFO 1239 base {}
+2020-12-29 11:09:57 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:09:57 INFO 1239 base {}
+2020-12-29 11:09:57 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:09:57 INFO 1239 base {}
+2020-12-29 11:09:58 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:09:58 INFO 1239 base {}
+2020-12-29 11:09:58 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:09:58 INFO 1239 base {}
+2020-12-29 11:09:58 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:09:58 INFO 1239 base {}
+2020-12-29 11:09:58 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:09:58 INFO 1239 base {}
+2020-12-29 11:09:58 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:09:58 INFO 1239 base {}
+2020-12-29 11:09:58 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:09:58 INFO 1239 base {}
+2020-12-29 11:09:59 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:09:59 INFO 1239 base {}
+2020-12-29 11:09:59 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:09:59 INFO 1239 base {}
+2020-12-29 11:09:59 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:09:59 INFO 1239 base {}
+2020-12-29 11:09:59 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:09:59 INFO 1239 base {}
+2020-12-29 11:09:59 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:09:59 INFO 1239 base {}
+2020-12-29 11:10:00 INFO 727 base BEGIN (implicit)
+2020-12-29 11:10:00 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:10:00 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:10:00 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:10:00 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:10:00 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:10:00 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:10:50 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:10:50 INFO 1239 base {}
+2020-12-29 11:10:50 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:10:50 INFO 1239 base {}
+2020-12-29 11:10:51 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:10:51 INFO 1239 base {}
+2020-12-29 11:10:51 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:10:51 INFO 1239 base {}
+2020-12-29 11:10:51 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:10:51 INFO 1341 base {}
+2020-12-29 11:10:51 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:10:51 INFO 1341 base {}
+2020-12-29 11:10:52 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:10:52 INFO 1341 base {}
+2020-12-29 11:10:52 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:10:52 INFO 1239 base {}
+2020-12-29 11:10:52 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:10:52 INFO 1239 base {}
+2020-12-29 11:10:52 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:10:52 INFO 1239 base {}
+2020-12-29 11:10:53 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:10:53 INFO 1239 base {}
+2020-12-29 11:10:53 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:10:53 INFO 1239 base {}
+2020-12-29 11:10:53 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:10:53 INFO 1239 base {}
+2020-12-29 11:10:53 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:10:53 INFO 1239 base {}
+2020-12-29 11:10:53 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:10:53 INFO 1239 base {}
+2020-12-29 11:10:54 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:10:54 INFO 1239 base {}
+2020-12-29 11:10:54 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:10:54 INFO 1239 base {}
+2020-12-29 11:10:54 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:10:54 INFO 1239 base {}
+2020-12-29 11:10:54 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:10:54 INFO 1239 base {}
+2020-12-29 11:10:54 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:10:54 INFO 1239 base {}
+2020-12-29 11:10:54 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:10:54 INFO 1239 base {}
+2020-12-29 11:10:55 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:10:55 INFO 1239 base {}
+2020-12-29 11:10:55 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:10:55 INFO 1239 base {}
+2020-12-29 11:10:55 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:10:55 INFO 1239 base {}
+2020-12-29 11:10:55 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:10:55 INFO 1239 base {}
+2020-12-29 11:10:55 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:10:55 INFO 1239 base {}
+2020-12-29 11:10:55 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:10:55 INFO 1239 base {}
+2020-12-29 11:10:56 INFO 727 base BEGIN (implicit)
+2020-12-29 11:10:56 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:10:56 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:10:56 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:10:56 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:10:56 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:10:56 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:14:57 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:14:57 INFO 1239 base {}
+2020-12-29 11:14:57 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:14:57 INFO 1239 base {}
+2020-12-29 11:14:58 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:14:58 INFO 1239 base {}
+2020-12-29 11:14:58 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:14:58 INFO 1239 base {}
+2020-12-29 11:14:58 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:14:58 INFO 1341 base {}
+2020-12-29 11:14:58 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:14:58 INFO 1341 base {}
+2020-12-29 11:14:59 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:14:59 INFO 1341 base {}
+2020-12-29 11:14:59 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:14:59 INFO 1239 base {}
+2020-12-29 11:14:59 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:14:59 INFO 1239 base {}
+2020-12-29 11:14:59 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:14:59 INFO 1239 base {}
+2020-12-29 11:14:59 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:14:59 INFO 1239 base {}
+2020-12-29 11:15:00 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:15:00 INFO 1239 base {}
+2020-12-29 11:15:00 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:15:00 INFO 1239 base {}
+2020-12-29 11:15:00 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:15:00 INFO 1239 base {}
+2020-12-29 11:15:00 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:15:00 INFO 1239 base {}
+2020-12-29 11:15:00 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:15:00 INFO 1239 base {}
+2020-12-29 11:15:00 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:15:00 INFO 1239 base {}
+2020-12-29 11:15:01 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:15:01 INFO 1239 base {}
+2020-12-29 11:15:01 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:15:01 INFO 1239 base {}
+2020-12-29 11:15:01 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:15:01 INFO 1239 base {}
+2020-12-29 11:15:01 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:15:01 INFO 1239 base {}
+2020-12-29 11:15:01 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:15:01 INFO 1239 base {}
+2020-12-29 11:15:01 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:15:01 INFO 1239 base {}
+2020-12-29 11:15:02 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:15:02 INFO 1239 base {}
+2020-12-29 11:15:02 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:15:02 INFO 1239 base {}
+2020-12-29 11:15:02 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:15:02 INFO 1239 base {}
+2020-12-29 11:15:02 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:15:02 INFO 1239 base {}
+2020-12-29 11:15:02 INFO 727 base BEGIN (implicit)
+2020-12-29 11:15:02 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:15:02 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:15:03 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:15:03 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:15:03 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:15:03 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:17:22 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:17:22 INFO 1239 base {}
+2020-12-29 11:17:22 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:17:22 INFO 1239 base {}
+2020-12-29 11:17:22 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:17:22 INFO 1239 base {}
+2020-12-29 11:17:23 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:17:23 INFO 1239 base {}
+2020-12-29 11:17:23 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:17:23 INFO 1341 base {}
+2020-12-29 11:17:23 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:17:23 INFO 1341 base {}
+2020-12-29 11:17:23 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:17:23 INFO 1341 base {}
+2020-12-29 11:17:24 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:17:24 INFO 1239 base {}
+2020-12-29 11:17:24 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:17:24 INFO 1239 base {}
+2020-12-29 11:17:24 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:17:24 INFO 1239 base {}
+2020-12-29 11:17:24 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:17:24 INFO 1239 base {}
+2020-12-29 11:17:24 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:17:24 INFO 1239 base {}
+2020-12-29 11:17:24 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:17:24 INFO 1239 base {}
+2020-12-29 11:17:25 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:17:25 INFO 1239 base {}
+2020-12-29 11:17:25 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:17:25 INFO 1239 base {}
+2020-12-29 11:17:25 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:17:25 INFO 1239 base {}
+2020-12-29 11:17:25 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:17:25 INFO 1239 base {}
+2020-12-29 11:17:25 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:17:25 INFO 1239 base {}
+2020-12-29 11:17:25 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:17:25 INFO 1239 base {}
+2020-12-29 11:17:26 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:17:26 INFO 1239 base {}
+2020-12-29 11:17:26 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:17:26 INFO 1239 base {}
+2020-12-29 11:17:26 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:17:26 INFO 1239 base {}
+2020-12-29 11:17:26 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:17:26 INFO 1239 base {}
+2020-12-29 11:17:26 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:17:26 INFO 1239 base {}
+2020-12-29 11:17:26 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:17:26 INFO 1239 base {}
+2020-12-29 11:17:27 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:17:27 INFO 1239 base {}
+2020-12-29 11:17:27 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:17:27 INFO 1239 base {}
+2020-12-29 11:17:27 INFO 727 base BEGIN (implicit)
+2020-12-29 11:17:27 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:17:27 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:17:27 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:17:27 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:17:27 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:17:27 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:20:00 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:20:00 INFO 1239 base {}
+2020-12-29 11:20:00 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:20:00 INFO 1239 base {}
+2020-12-29 11:20:01 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:20:01 INFO 1239 base {}
+2020-12-29 11:20:01 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:20:01 INFO 1239 base {}
+2020-12-29 11:20:01 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:20:01 INFO 1341 base {}
+2020-12-29 11:20:01 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:20:01 INFO 1341 base {}
+2020-12-29 11:20:02 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:20:02 INFO 1341 base {}
+2020-12-29 11:20:02 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:20:02 INFO 1239 base {}
+2020-12-29 11:20:02 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:20:02 INFO 1239 base {}
+2020-12-29 11:20:02 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:20:02 INFO 1239 base {}
+2020-12-29 11:20:03 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:20:03 INFO 1239 base {}
+2020-12-29 11:20:03 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:20:03 INFO 1239 base {}
+2020-12-29 11:20:03 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:20:03 INFO 1239 base {}
+2020-12-29 11:20:03 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:20:03 INFO 1239 base {}
+2020-12-29 11:20:03 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:20:03 INFO 1239 base {}
+2020-12-29 11:20:03 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:20:03 INFO 1239 base {}
+2020-12-29 11:20:04 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:20:04 INFO 1239 base {}
+2020-12-29 11:20:04 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:20:04 INFO 1239 base {}
+2020-12-29 11:20:04 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:20:04 INFO 1239 base {}
+2020-12-29 11:20:04 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:20:04 INFO 1239 base {}
+2020-12-29 11:20:04 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:20:04 INFO 1239 base {}
+2020-12-29 11:20:04 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:20:04 INFO 1239 base {}
+2020-12-29 11:20:05 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:20:05 INFO 1239 base {}
+2020-12-29 11:20:05 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:20:05 INFO 1239 base {}
+2020-12-29 11:20:05 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:20:05 INFO 1239 base {}
+2020-12-29 11:20:05 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:20:05 INFO 1239 base {}
+2020-12-29 11:20:05 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:20:05 INFO 1239 base {}
+2020-12-29 11:20:06 INFO 727 base BEGIN (implicit)
+2020-12-29 11:20:06 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:20:06 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:20:06 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:20:06 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:20:06 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:20:06 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:29:34 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:29:34 INFO 1239 base {}
+2020-12-29 11:29:34 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:29:34 INFO 1239 base {}
+2020-12-29 11:29:34 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:29:34 INFO 1239 base {}
+2020-12-29 11:29:35 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:29:35 INFO 1239 base {}
+2020-12-29 11:29:35 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:29:35 INFO 1341 base {}
+2020-12-29 11:29:35 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:29:35 INFO 1341 base {}
+2020-12-29 11:29:35 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:29:35 INFO 1341 base {}
+2020-12-29 11:29:36 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:29:36 INFO 1239 base {}
+2020-12-29 11:29:36 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:29:36 INFO 1239 base {}
+2020-12-29 11:29:36 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:29:36 INFO 1239 base {}
+2020-12-29 11:29:36 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:29:36 INFO 1239 base {}
+2020-12-29 11:29:37 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:29:37 INFO 1239 base {}
+2020-12-29 11:29:37 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:29:37 INFO 1239 base {}
+2020-12-29 11:29:37 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:29:37 INFO 1239 base {}
+2020-12-29 11:29:38 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:29:38 INFO 1239 base {}
+2020-12-29 11:29:38 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:29:38 INFO 1239 base {}
+2020-12-29 11:29:38 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:29:38 INFO 1239 base {}
+2020-12-29 11:29:38 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:29:38 INFO 1239 base {}
+2020-12-29 11:29:38 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:29:38 INFO 1239 base {}
+2020-12-29 11:29:38 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:29:38 INFO 1239 base {}
+2020-12-29 11:29:38 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:29:38 INFO 1239 base {}
+2020-12-29 11:29:39 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:29:39 INFO 1239 base {}
+2020-12-29 11:29:39 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:29:39 INFO 1239 base {}
+2020-12-29 11:29:39 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:29:39 INFO 1239 base {}
+2020-12-29 11:29:39 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:29:39 INFO 1239 base {}
+2020-12-29 11:29:39 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:29:39 INFO 1239 base {}
+2020-12-29 11:29:39 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:29:39 INFO 1239 base {}
+2020-12-29 11:29:40 INFO 727 base BEGIN (implicit)
+2020-12-29 11:29:40 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:29:40 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:29:40 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:29:40 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:29:40 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:29:40 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:31:39 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:31:39 INFO 1239 base {}
+2020-12-29 11:31:39 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:31:39 INFO 1239 base {}
+2020-12-29 11:31:39 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:31:39 INFO 1239 base {}
+2020-12-29 11:31:40 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:31:40 INFO 1239 base {}
+2020-12-29 11:31:40 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:31:40 INFO 1341 base {}
+2020-12-29 11:31:40 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:31:40 INFO 1341 base {}
+2020-12-29 11:31:40 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:31:40 INFO 1341 base {}
+2020-12-29 11:31:41 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:31:41 INFO 1239 base {}
+2020-12-29 11:31:41 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:31:41 INFO 1239 base {}
+2020-12-29 11:31:41 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:31:41 INFO 1239 base {}
+2020-12-29 11:31:41 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:31:41 INFO 1239 base {}
+2020-12-29 11:31:41 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:31:41 INFO 1239 base {}
+2020-12-29 11:31:41 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:31:41 INFO 1239 base {}
+2020-12-29 11:31:42 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:31:42 INFO 1239 base {}
+2020-12-29 11:31:42 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:31:42 INFO 1239 base {}
+2020-12-29 11:31:42 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:31:42 INFO 1239 base {}
+2020-12-29 11:31:42 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:31:42 INFO 1239 base {}
+2020-12-29 11:31:42 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:31:42 INFO 1239 base {}
+2020-12-29 11:31:42 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:31:42 INFO 1239 base {}
+2020-12-29 11:31:43 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:31:43 INFO 1239 base {}
+2020-12-29 11:31:43 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:31:43 INFO 1239 base {}
+2020-12-29 11:31:43 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:31:43 INFO 1239 base {}
+2020-12-29 11:31:43 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:31:43 INFO 1239 base {}
+2020-12-29 11:31:43 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:31:43 INFO 1239 base {}
+2020-12-29 11:31:43 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:31:43 INFO 1239 base {}
+2020-12-29 11:31:44 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:31:44 INFO 1239 base {}
+2020-12-29 11:31:44 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:31:44 INFO 1239 base {}
+2020-12-29 11:31:44 INFO 727 base BEGIN (implicit)
+2020-12-29 11:31:44 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:31:44 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:31:44 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:31:44 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:31:44 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:31:44 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:31:46 INFO 727 base BEGIN (implicit)
+2020-12-29 11:31:46 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:31:46 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:31:47 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:31:47 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:31:47 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:31:47 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:31:49 INFO 727 base BEGIN (implicit)
+2020-12-29 11:31:49 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:31:49 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:31:49 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:31:49 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:31:49 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:31:49 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:32:12 INFO 727 base BEGIN (implicit)
+2020-12-29 11:32:12 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:32:12 INFO 1239 base {'ip_1': '10.110.31.3', 'param_1': 1}
+2020-12-29 11:37:46 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:37:46 INFO 1239 base {}
+2020-12-29 11:37:46 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:37:46 INFO 1239 base {}
+2020-12-29 11:37:46 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:37:46 INFO 1239 base {}
+2020-12-29 11:37:47 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:37:47 INFO 1239 base {}
+2020-12-29 11:37:47 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:37:47 INFO 1341 base {}
+2020-12-29 11:37:47 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:37:47 INFO 1341 base {}
+2020-12-29 11:37:47 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:37:47 INFO 1341 base {}
+2020-12-29 11:37:48 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:37:48 INFO 1239 base {}
+2020-12-29 11:37:48 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:37:48 INFO 1239 base {}
+2020-12-29 11:37:48 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:37:48 INFO 1239 base {}
+2020-12-29 11:37:48 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:37:48 INFO 1239 base {}
+2020-12-29 11:37:48 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:37:48 INFO 1239 base {}
+2020-12-29 11:37:48 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:37:48 INFO 1239 base {}
+2020-12-29 11:37:49 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:37:49 INFO 1239 base {}
+2020-12-29 11:37:49 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:37:49 INFO 1239 base {}
+2020-12-29 11:37:49 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:37:49 INFO 1239 base {}
+2020-12-29 11:37:49 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:37:49 INFO 1239 base {}
+2020-12-29 11:37:49 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:37:49 INFO 1239 base {}
+2020-12-29 11:37:49 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:37:49 INFO 1239 base {}
+2020-12-29 11:37:50 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:37:50 INFO 1239 base {}
+2020-12-29 11:37:50 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:37:50 INFO 1239 base {}
+2020-12-29 11:37:50 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:37:50 INFO 1239 base {}
+2020-12-29 11:37:50 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:37:50 INFO 1239 base {}
+2020-12-29 11:37:50 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:37:50 INFO 1239 base {}
+2020-12-29 11:37:50 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:37:50 INFO 1239 base {}
+2020-12-29 11:37:51 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:37:51 INFO 1239 base {}
+2020-12-29 11:37:51 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:37:51 INFO 1239 base {}
+2020-12-29 11:37:51 INFO 727 base BEGIN (implicit)
+2020-12-29 11:37:51 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:37:51 INFO 1239 base {'ip_1': '10.110.31.3', 'param_1': 1}
+2020-12-29 11:37:51 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 11:37:57 INFO 727 base BEGIN (implicit)
+2020-12-29 11:37:57 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:37:57 INFO 1239 base {'ip_1': '10.110.31.3', 'param_1': 1}
+2020-12-29 11:37:58 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 11:38:04 INFO 727 base BEGIN (implicit)
+2020-12-29 11:38:04 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:38:04 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:38:04 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:38:04 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:38:04 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:38:04 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:38:11 INFO 727 base BEGIN (implicit)
+2020-12-29 11:38:11 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:38:11 INFO 1239 base {'ip_1': '10.110.31.1', 'param_1': 1}
+2020-12-29 11:38:11 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:38:11 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:38:11 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:38:11 INFO 1239 base {'ip_1': '10.110.31.1', 'param_1': 1}
+2020-12-29 11:38:18 INFO 727 base BEGIN (implicit)
+2020-12-29 11:38:18 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:38:18 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:38:18 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:38:18 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:38:18 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:38:18 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:39:01 INFO 727 base BEGIN (implicit)
+2020-12-29 11:39:01 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:39:01 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:39:01 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:39:01 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:39:01 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:39:01 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:39:03 INFO 727 base BEGIN (implicit)
+2020-12-29 11:39:03 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:39:03 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:39:03 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:39:03 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:39:03 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:39:03 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:39:05 INFO 727 base BEGIN (implicit)
+2020-12-29 11:39:05 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:39:05 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 11:39:05 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:39:05 INFO 1239 base {'id_1': '2234', 'param_1': 1}
+2020-12-29 11:39:06 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:39:06 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'param_1': 2}
+2020-12-29 11:40:11 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:40:11 INFO 1239 base {}
+2020-12-29 11:40:12 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:40:12 INFO 1239 base {}
+2020-12-29 11:40:12 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:40:12 INFO 1239 base {}
+2020-12-29 11:40:12 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:40:12 INFO 1239 base {}
+2020-12-29 11:40:12 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:40:12 INFO 1341 base {}
+2020-12-29 11:40:13 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:40:13 INFO 1341 base {}
+2020-12-29 11:40:13 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:40:13 INFO 1341 base {}
+2020-12-29 11:40:13 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:40:13 INFO 1239 base {}
+2020-12-29 11:40:13 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:40:13 INFO 1239 base {}
+2020-12-29 11:40:14 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:40:14 INFO 1239 base {}
+2020-12-29 11:40:14 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:40:14 INFO 1239 base {}
+2020-12-29 11:40:14 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:40:14 INFO 1239 base {}
+2020-12-29 11:40:14 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:40:14 INFO 1239 base {}
+2020-12-29 11:40:14 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:40:14 INFO 1239 base {}
+2020-12-29 11:40:14 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:40:14 INFO 1239 base {}
+2020-12-29 11:40:15 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:40:15 INFO 1239 base {}
+2020-12-29 11:40:15 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:40:15 INFO 1239 base {}
+2020-12-29 11:40:15 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:40:15 INFO 1239 base {}
+2020-12-29 11:40:15 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:40:15 INFO 1239 base {}
+2020-12-29 11:40:15 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:40:15 INFO 1239 base {}
+2020-12-29 11:40:15 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:40:15 INFO 1239 base {}
+2020-12-29 11:40:15 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:40:15 INFO 1239 base {}
+2020-12-29 11:40:16 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:40:16 INFO 1239 base {}
+2020-12-29 11:40:16 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:40:16 INFO 1239 base {}
+2020-12-29 11:40:16 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:40:16 INFO 1239 base {}
+2020-12-29 11:40:16 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:40:16 INFO 1239 base {}
+2020-12-29 11:40:16 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:40:16 INFO 1239 base {}
+2020-12-29 11:40:17 INFO 727 base BEGIN (implicit)
+2020-12-29 11:40:17 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:40:17 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:40:17 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 11:41:24 INFO 727 base BEGIN (implicit)
+2020-12-29 11:41:24 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-29 11:41:24 INFO 1239 base {'id': 'hahaha122', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 11, 41, 24, 711066), 'modify_date': None}
+2020-12-29 11:41:24 INFO 747 base ROLLBACK
+2020-12-29 11:41:30 INFO 727 base BEGIN (implicit)
+2020-12-29 11:41:30 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-29 11:41:30 INFO 1239 base {'id': 'hahaha1222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 11, 41, 30, 689385), 'modify_date': None}
+2020-12-29 11:41:30 INFO 769 base COMMIT
+2020-12-29 11:41:31 INFO 727 base BEGIN (implicit)
+2020-12-29 11:41:31 INFO 1234 base INSERT INTO playbook_asset (ip, task_id, created_date) VALUES (%(ip)s, %(task_id)s, %(created_date)s)
+2020-12-29 11:41:31 INFO 1239 base ({'ip': '10.110.31.1', 'task_id': 'hahaha1222', 'created_date': datetime.datetime(2020, 12, 29, 11, 41, 31, 101473)}, {'ip': '10.110.31.2', 'task_id': 'hahaha1222', 'created_date': datetime.datetime(2020, 12, 29, 11, 41, 31, 101484)}, {'ip': '10.110.31.99', 'task_id': 'hahaha1222', 'created_date': datetime.datetime(2020, 12, 29, 11, 41, 31, 101491)})
+2020-12-29 11:41:31 INFO 769 base COMMIT
+2020-12-29 11:42:02 INFO 727 base BEGIN (implicit)
+2020-12-29 11:42:02 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:42:02 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:42:02 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:42:02 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:42:02 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:42:02 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:43:51 INFO 727 base BEGIN (implicit)
+2020-12-29 11:43:51 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-29 11:43:51 INFO 1239 base {'id': 'hahaha12222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 11, 43, 51, 578812), 'modify_date': None}
+2020-12-29 11:43:51 INFO 769 base COMMIT
+2020-12-29 11:43:52 INFO 727 base BEGIN (implicit)
+2020-12-29 11:43:52 INFO 1234 base INSERT INTO playbook_asset (ip, task_id, created_date) VALUES (%(ip)s, %(task_id)s, %(created_date)s)
+2020-12-29 11:43:52 INFO 1239 base ({'ip': '10.110.31.1', 'task_id': 'hahaha12222', 'created_date': datetime.datetime(2020, 12, 29, 11, 43, 52, 21652)}, {'ip': '10.110.31.2', 'task_id': 'hahaha12222', 'created_date': datetime.datetime(2020, 12, 29, 11, 43, 52, 21664)}, {'ip': '10.110.31.99', 'task_id': 'hahaha12222', 'created_date': datetime.datetime(2020, 12, 29, 11, 43, 52, 21671)})
+2020-12-29 11:43:52 INFO 769 base COMMIT
+2020-12-29 11:44:00 INFO 727 base BEGIN (implicit)
+2020-12-29 11:44:00 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:44:00 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:44:00 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:44:00 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:44:00 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:44:00 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:44:03 INFO 727 base BEGIN (implicit)
+2020-12-29 11:44:03 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:44:03 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:44:03 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:44:03 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:44:03 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:44:03 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:44:05 INFO 727 base BEGIN (implicit)
+2020-12-29 11:44:05 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:44:05 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:44:05 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:44:05 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:44:05 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:44:05 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:52:34 INFO 727 base BEGIN (implicit)
+2020-12-29 11:52:34 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-29 11:52:34 INFO 1239 base {'id': 'hahaha122222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 11, 52, 34, 518830), 'modify_date': None}
+2020-12-29 11:52:34 INFO 769 base COMMIT
+2020-12-29 11:52:35 INFO 727 base BEGIN (implicit)
+2020-12-29 11:52:35 INFO 1234 base INSERT INTO playbook_asset (ip, task_id, created_date) VALUES (%(ip)s, %(task_id)s, %(created_date)s)
+2020-12-29 11:52:35 INFO 1239 base ({'ip': '10.110.31.1', 'task_id': 'hahaha122222', 'created_date': datetime.datetime(2020, 12, 29, 11, 52, 35, 885361)}, {'ip': '10.110.31.2', 'task_id': 'hahaha122222', 'created_date': datetime.datetime(2020, 12, 29, 11, 52, 35, 885369)}, {'ip': '10.110.31.99', 'task_id': 'hahaha122222', 'created_date': datetime.datetime(2020, 12, 29, 11, 52, 35, 885374)})
+2020-12-29 11:52:36 INFO 769 base COMMIT
+2020-12-29 11:52:45 INFO 727 base BEGIN (implicit)
+2020-12-29 11:52:45 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:52:45 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:52:45 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:52:45 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:52:45 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:52:45 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:54:58 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:54:58 INFO 1239 base {}
+2020-12-29 11:54:58 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:54:58 INFO 1239 base {}
+2020-12-29 11:54:59 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:54:59 INFO 1239 base {}
+2020-12-29 11:54:59 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:54:59 INFO 1239 base {}
+2020-12-29 11:54:59 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:54:59 INFO 1341 base {}
+2020-12-29 11:54:59 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:54:59 INFO 1341 base {}
+2020-12-29 11:55:00 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:55:00 INFO 1341 base {}
+2020-12-29 11:55:00 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:55:00 INFO 1239 base {}
+2020-12-29 11:55:00 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:55:00 INFO 1239 base {}
+2020-12-29 11:55:00 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:55:00 INFO 1239 base {}
+2020-12-29 11:55:01 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:55:01 INFO 1239 base {}
+2020-12-29 11:55:01 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:55:01 INFO 1239 base {}
+2020-12-29 11:55:01 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:55:01 INFO 1239 base {}
+2020-12-29 11:55:01 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:55:01 INFO 1239 base {}
+2020-12-29 11:55:01 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:55:01 INFO 1239 base {}
+2020-12-29 11:55:01 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:55:01 INFO 1239 base {}
+2020-12-29 11:55:02 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:55:02 INFO 1239 base {}
+2020-12-29 11:55:02 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:55:02 INFO 1239 base {}
+2020-12-29 11:55:02 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:55:02 INFO 1239 base {}
+2020-12-29 11:55:02 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:55:02 INFO 1239 base {}
+2020-12-29 11:55:02 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:55:02 INFO 1239 base {}
+2020-12-29 11:55:02 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:55:02 INFO 1239 base {}
+2020-12-29 11:55:03 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:55:03 INFO 1239 base {}
+2020-12-29 11:55:03 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:55:03 INFO 1239 base {}
+2020-12-29 11:55:03 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:55:03 INFO 1239 base {}
+2020-12-29 11:55:03 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:55:03 INFO 1239 base {}
+2020-12-29 11:55:03 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:55:03 INFO 1239 base {}
+2020-12-29 11:55:04 INFO 727 base BEGIN (implicit)
+2020-12-29 11:55:04 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-29 11:55:04 INFO 1239 base {'id': 'hahaha1222222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 11, 55, 4, 72471), 'modify_date': None}
+2020-12-29 11:55:04 INFO 769 base COMMIT
+2020-12-29 11:55:04 INFO 727 base BEGIN (implicit)
+2020-12-29 11:55:04 INFO 1234 base INSERT INTO playbook_asset (ip, task_id, created_date) VALUES (%(ip)s, %(task_id)s, %(created_date)s)
+2020-12-29 11:55:04 INFO 1239 base ({'ip': '10.110.31.1', 'task_id': 'hahaha1222222', 'created_date': datetime.datetime(2020, 12, 29, 11, 55, 4, 485646)}, {'ip': '10.110.31.2', 'task_id': 'hahaha1222222', 'created_date': datetime.datetime(2020, 12, 29, 11, 55, 4, 485659)}, {'ip': '10.110.31.99', 'task_id': 'hahaha1222222', 'created_date': datetime.datetime(2020, 12, 29, 11, 55, 4, 485668)})
+2020-12-29 11:55:04 INFO 769 base COMMIT
+2020-12-29 11:55:07 INFO 727 base BEGIN (implicit)
+2020-12-29 11:55:07 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:55:07 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:55:08 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:55:08 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:55:08 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:55:08 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:57:27 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 11:57:27 INFO 1239 base {}
+2020-12-29 11:57:28 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 11:57:28 INFO 1239 base {}
+2020-12-29 11:57:28 INFO 1234 base SELECT DATABASE()
+2020-12-29 11:57:28 INFO 1239 base {}
+2020-12-29 11:57:28 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 11:57:28 INFO 1239 base {}
+2020-12-29 11:57:28 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:57:28 INFO 1341 base {}
+2020-12-29 11:57:29 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 11:57:29 INFO 1341 base {}
+2020-12-29 11:57:29 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 11:57:29 INFO 1341 base {}
+2020-12-29 11:57:29 INFO 1234 base DESCRIBE `task`
+2020-12-29 11:57:29 INFO 1239 base {}
+2020-12-29 11:57:29 INFO 1234 base DESCRIBE `asset`
+2020-12-29 11:57:29 INFO 1239 base {}
+2020-12-29 11:57:30 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 11:57:30 INFO 1239 base {}
+2020-12-29 11:57:30 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 11:57:30 INFO 1239 base {}
+2020-12-29 11:57:30 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 11:57:30 INFO 1239 base {}
+2020-12-29 11:57:30 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 11:57:30 INFO 1239 base {}
+2020-12-29 11:57:30 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 11:57:30 INFO 1239 base {}
+2020-12-29 11:57:30 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 11:57:30 INFO 1239 base {}
+2020-12-29 11:57:30 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 11:57:30 INFO 1239 base {}
+2020-12-29 11:57:31 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 11:57:31 INFO 1239 base {}
+2020-12-29 11:57:31 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 11:57:31 INFO 1239 base {}
+2020-12-29 11:57:31 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 11:57:31 INFO 1239 base {}
+2020-12-29 11:57:31 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 11:57:31 INFO 1239 base {}
+2020-12-29 11:57:31 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 11:57:31 INFO 1239 base {}
+2020-12-29 11:57:31 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 11:57:31 INFO 1239 base {}
+2020-12-29 11:57:32 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 11:57:32 INFO 1239 base {}
+2020-12-29 11:57:32 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 11:57:32 INFO 1239 base {}
+2020-12-29 11:57:32 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 11:57:32 INFO 1239 base {}
+2020-12-29 11:57:32 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 11:57:32 INFO 1239 base {}
+2020-12-29 11:57:32 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 11:57:32 INFO 1239 base {}
+2020-12-29 11:57:33 INFO 727 base BEGIN (implicit)
+2020-12-29 11:57:33 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-29 11:57:33 INFO 1239 base {'id': 'hahaha12222222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 11, 57, 33, 235659), 'modify_date': None}
+2020-12-29 11:57:33 INFO 769 base COMMIT
+2020-12-29 11:57:33 INFO 727 base BEGIN (implicit)
+2020-12-29 11:57:33 INFO 1234 base INSERT INTO playbook_asset (ip, task_id, created_date) VALUES (%(ip)s, %(task_id)s, %(created_date)s)
+2020-12-29 11:57:33 INFO 1239 base ({'ip': '10.110.31.1', 'task_id': 'hahaha12222222', 'created_date': datetime.datetime(2020, 12, 29, 11, 57, 33, 633056)}, {'ip': '10.110.31.2', 'task_id': 'hahaha12222222', 'created_date': datetime.datetime(2020, 12, 29, 11, 57, 33, 633068)}, {'ip': '10.110.31.99', 'task_id': 'hahaha12222222', 'created_date': datetime.datetime(2020, 12, 29, 11, 57, 33, 633075)})
+2020-12-29 11:57:33 INFO 769 base COMMIT
+2020-12-29 11:57:38 INFO 727 base BEGIN (implicit)
+2020-12-29 11:57:38 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:57:38 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:57:38 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:57:38 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:57:38 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:57:38 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:57:53 INFO 727 base BEGIN (implicit)
+2020-12-29 11:57:53 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:57:53 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:57:53 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:57:53 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:57:53 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:57:53 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:58:04 INFO 727 base BEGIN (implicit)
+2020-12-29 11:58:04 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:58:04 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:58:04 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:58:04 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:58:05 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:58:05 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:58:07 INFO 727 base BEGIN (implicit)
+2020-12-29 11:58:07 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:58:07 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:58:07 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:58:07 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:58:07 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:58:07 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:58:11 INFO 727 base BEGIN (implicit)
+2020-12-29 11:58:11 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:58:11 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 11:58:11 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 11:58:11 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 11:58:11 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 11:58:11 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 11:59:49 ERROR 617 views Get Playbook Result Error: (pymysql.err.OperationalError) (2003, "Can't connect to MySQL server on '10.102.0.14' (timed out)")
+(Background on this error at: http://sqlalche.me/e/13/e3q8)
+2020-12-29 12:00:46 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 12:00:46 INFO 1239 base {}
+2020-12-29 12:00:46 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 12:00:46 INFO 1239 base {}
+2020-12-29 12:00:46 INFO 1234 base SELECT DATABASE()
+2020-12-29 12:00:46 INFO 1239 base {}
+2020-12-29 12:00:46 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 12:00:46 INFO 1239 base {}
+2020-12-29 12:00:47 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 12:00:47 INFO 1341 base {}
+2020-12-29 12:00:47 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 12:00:47 INFO 1341 base {}
+2020-12-29 12:00:47 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 12:00:47 INFO 1341 base {}
+2020-12-29 12:00:47 INFO 1234 base DESCRIBE `task`
+2020-12-29 12:00:47 INFO 1239 base {}
+2020-12-29 12:00:48 INFO 1234 base DESCRIBE `asset`
+2020-12-29 12:00:48 INFO 1239 base {}
+2020-12-29 12:00:48 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 12:00:48 INFO 1239 base {}
+2020-12-29 12:00:48 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 12:00:48 INFO 1239 base {}
+2020-12-29 12:00:48 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 12:00:48 INFO 1239 base {}
+2020-12-29 12:00:48 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 12:00:48 INFO 1239 base {}
+2020-12-29 12:00:48 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 12:00:48 INFO 1239 base {}
+2020-12-29 12:00:48 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 12:00:48 INFO 1239 base {}
+2020-12-29 12:00:49 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 12:00:49 INFO 1239 base {}
+2020-12-29 12:00:49 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 12:00:49 INFO 1239 base {}
+2020-12-29 12:00:49 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 12:00:49 INFO 1239 base {}
+2020-12-29 12:00:49 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 12:00:49 INFO 1239 base {}
+2020-12-29 12:00:49 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 12:00:49 INFO 1239 base {}
+2020-12-29 12:00:49 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 12:00:49 INFO 1239 base {}
+2020-12-29 12:00:50 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 12:00:50 INFO 1239 base {}
+2020-12-29 12:00:50 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 12:00:50 INFO 1239 base {}
+2020-12-29 12:00:50 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 12:00:50 INFO 1239 base {}
+2020-12-29 12:00:50 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 12:00:50 INFO 1239 base {}
+2020-12-29 12:00:50 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 12:00:50 INFO 1239 base {}
+2020-12-29 12:00:50 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 12:00:50 INFO 1239 base {}
+2020-12-29 12:00:51 INFO 727 base BEGIN (implicit)
+2020-12-29 12:00:51 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 12:00:51 INFO 1239 base {'ip_1': '10.110.31.199', 'param_1': 1}
+2020-12-29 12:00:51 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 12:00:54 INFO 727 base BEGIN (implicit)
+2020-12-29 12:00:54 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 12:00:54 INFO 1239 base {'ip_1': '10.110.31.199', 'param_1': 1}
+2020-12-29 12:00:54 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 12:01:00 INFO 727 base BEGIN (implicit)
+2020-12-29 12:01:00 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 12:01:00 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 12:01:00 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 12:01:00 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 12:01:00 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 12:01:00 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 12:01:27 INFO 727 base BEGIN (implicit)
+2020-12-29 12:01:27 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 12:01:27 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 12:01:27 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 12:01:27 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 12:01:27 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 12:01:27 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 14:01:31 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 14:01:31 INFO 1239 base {}
+2020-12-29 14:01:31 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 14:01:31 INFO 1239 base {}
+2020-12-29 14:01:31 INFO 1234 base SELECT DATABASE()
+2020-12-29 14:01:31 INFO 1239 base {}
+2020-12-29 14:01:31 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 14:01:31 INFO 1239 base {}
+2020-12-29 14:01:32 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 14:01:32 INFO 1341 base {}
+2020-12-29 14:01:32 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 14:01:32 INFO 1341 base {}
+2020-12-29 14:01:32 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 14:01:32 INFO 1341 base {}
+2020-12-29 14:01:32 INFO 1234 base DESCRIBE `task`
+2020-12-29 14:01:32 INFO 1239 base {}
+2020-12-29 14:01:33 INFO 1234 base DESCRIBE `asset`
+2020-12-29 14:01:33 INFO 1239 base {}
+2020-12-29 14:01:33 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 14:01:33 INFO 1239 base {}
+2020-12-29 14:01:33 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 14:01:33 INFO 1239 base {}
+2020-12-29 14:01:33 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 14:01:33 INFO 1239 base {}
+2020-12-29 14:01:33 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 14:01:33 INFO 1239 base {}
+2020-12-29 14:01:33 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 14:01:33 INFO 1239 base {}
+2020-12-29 14:01:34 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 14:01:34 INFO 1239 base {}
+2020-12-29 14:01:34 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 14:01:34 INFO 1239 base {}
+2020-12-29 14:01:34 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 14:01:34 INFO 1239 base {}
+2020-12-29 14:01:34 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 14:01:34 INFO 1239 base {}
+2020-12-29 14:01:34 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 14:01:34 INFO 1239 base {}
+2020-12-29 14:01:34 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 14:01:34 INFO 1239 base {}
+2020-12-29 14:01:35 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 14:01:35 INFO 1239 base {}
+2020-12-29 14:01:35 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 14:01:35 INFO 1239 base {}
+2020-12-29 14:01:35 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 14:01:35 INFO 1239 base {}
+2020-12-29 14:01:35 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 14:01:35 INFO 1239 base {}
+2020-12-29 14:01:35 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 14:01:35 INFO 1239 base {}
+2020-12-29 14:01:35 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 14:01:35 INFO 1239 base {}
+2020-12-29 14:01:36 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 14:01:36 INFO 1239 base {}
+2020-12-29 14:01:36 INFO 727 base BEGIN (implicit)
+2020-12-29 14:01:36 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:01:36 INFO 1239 base {'ip_1': '10.110.31.99', 'param_1': 1}
+2020-12-29 14:01:36 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:01:36 INFO 1239 base {'id_1': 'hahaha1222', 'param_1': 1}
+2020-12-29 14:01:36 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 14:01:36 INFO 1239 base {'ip_1': '10.110.31.1', 'ip_2': '10.110.31.2', 'ip_3': '10.110.31.99', 'param_1': 3}
+2020-12-29 14:02:07 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:07 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-29 14:02:07 INFO 1239 base {'id': 'hahaha12222222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 14, 2, 7, 460531), 'modify_date': None}
+2020-12-29 14:02:07 INFO 747 base ROLLBACK
+2020-12-29 14:02:14 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:14 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:14 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:15 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:17 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:17 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:17 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:17 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:19 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:19 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:19 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:19 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:20 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:20 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:20 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:20 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:21 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:21 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:21 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:22 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:22 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:22 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:22 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:22 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:23 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:23 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:23 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:24 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:24 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:24 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:24 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:24 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:25 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:25 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:25 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:25 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:27 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:27 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:27 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:27 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:27 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:27 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:27 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:28 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:28 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:28 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:28 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:28 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:02:36 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:36 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-29 14:02:36 INFO 1239 base {'id': 'hahaha122222222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 14, 2, 36, 404220), 'modify_date': None}
+2020-12-29 14:02:36 INFO 769 base COMMIT
+2020-12-29 14:02:37 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:37 INFO 1234 base INSERT INTO playbook_asset (ip, task_id, created_date) VALUES (%(ip)s, %(task_id)s, %(created_date)s)
+2020-12-29 14:02:37 INFO 1239 base ({'ip': '10.110.31.4', 'task_id': 'hahaha122222222', 'created_date': datetime.datetime(2020, 12, 29, 14, 2, 37, 666926)}, {'ip': '10.110.31.3', 'task_id': 'hahaha122222222', 'created_date': datetime.datetime(2020, 12, 29, 14, 2, 37, 666939)}, {'ip': '10.110.31.9', 'task_id': 'hahaha122222222', 'created_date': datetime.datetime(2020, 12, 29, 14, 2, 37, 666948)})
+2020-12-29 14:02:37 INFO 769 base COMMIT
+2020-12-29 14:02:44 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:44 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:44 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:44 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:44 INFO 1239 base {'id_1': 'hahaha122222222', 'param_1': 1}
+2020-12-29 14:02:44 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 14:02:44 INFO 1239 base {'ip_1': '10.110.31.4', 'ip_2': '10.110.31.3', 'ip_3': '10.110.31.9', 'param_1': 3}
+2020-12-29 14:02:50 INFO 727 base BEGIN (implicit)
+2020-12-29 14:02:50 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:50 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:02:50 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:02:50 INFO 1239 base {'id_1': 'hahaha122222222', 'param_1': 1}
+2020-12-29 14:02:50 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 14:02:50 INFO 1239 base {'ip_1': '10.110.31.4', 'ip_2': '10.110.31.3', 'ip_3': '10.110.31.9', 'param_1': 3}
+2020-12-29 14:03:08 INFO 727 base BEGIN (implicit)
+2020-12-29 14:03:08 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:03:08 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:03:08 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:03:08 INFO 1239 base {'id_1': 'hahaha122222222', 'param_1': 1}
+2020-12-29 14:03:08 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 14:03:08 INFO 1239 base {'ip_1': '10.110.31.4', 'ip_2': '10.110.31.3', 'ip_3': '10.110.31.9', 'param_1': 3}
+2020-12-29 14:05:59 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 14:05:59 INFO 1239 base {}
+2020-12-29 14:05:59 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 14:05:59 INFO 1239 base {}
+2020-12-29 14:05:59 INFO 1234 base SELECT DATABASE()
+2020-12-29 14:05:59 INFO 1239 base {}
+2020-12-29 14:06:00 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 14:06:00 INFO 1239 base {}
+2020-12-29 14:06:00 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 14:06:00 INFO 1341 base {}
+2020-12-29 14:06:00 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 14:06:00 INFO 1341 base {}
+2020-12-29 14:06:00 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 14:06:00 INFO 1341 base {}
+2020-12-29 14:06:01 INFO 1234 base DESCRIBE `task`
+2020-12-29 14:06:01 INFO 1239 base {}
+2020-12-29 14:06:01 INFO 1234 base DESCRIBE `asset`
+2020-12-29 14:06:01 INFO 1239 base {}
+2020-12-29 14:06:01 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 14:06:01 INFO 1239 base {}
+2020-12-29 14:06:01 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 14:06:01 INFO 1239 base {}
+2020-12-29 14:06:01 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 14:06:01 INFO 1239 base {}
+2020-12-29 14:06:01 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 14:06:01 INFO 1239 base {}
+2020-12-29 14:06:01 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 14:06:01 INFO 1239 base {}
+2020-12-29 14:06:02 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 14:06:02 INFO 1239 base {}
+2020-12-29 14:06:02 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 14:06:02 INFO 1239 base {}
+2020-12-29 14:06:02 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 14:06:02 INFO 1239 base {}
+2020-12-29 14:06:02 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 14:06:02 INFO 1239 base {}
+2020-12-29 14:06:02 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 14:06:02 INFO 1239 base {}
+2020-12-29 14:06:02 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 14:06:02 INFO 1239 base {}
+2020-12-29 14:06:03 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 14:06:03 INFO 1239 base {}
+2020-12-29 14:06:03 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 14:06:03 INFO 1239 base {}
+2020-12-29 14:06:03 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 14:06:03 INFO 1239 base {}
+2020-12-29 14:06:03 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 14:06:03 INFO 1239 base {}
+2020-12-29 14:06:03 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 14:06:03 INFO 1239 base {}
+2020-12-29 14:06:03 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 14:06:03 INFO 1239 base {}
+2020-12-29 14:06:04 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 14:06:04 INFO 1239 base {}
+2020-12-29 14:06:04 INFO 727 base BEGIN (implicit)
+2020-12-29 14:06:04 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:06:04 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:06:04 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:06:04 INFO 1239 base {'id_1': 'hahaha122222222', 'param_1': 1}
+2020-12-29 14:06:04 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 14:06:04 INFO 1239 base {'ip_1': '10.110.31.4', 'ip_2': '10.110.31.3', 'ip_3': '10.110.31.9', 'param_1': 3}
+2020-12-29 14:07:57 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 14:07:57 INFO 1239 base {}
+2020-12-29 14:07:57 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 14:07:57 INFO 1239 base {}
+2020-12-29 14:07:58 INFO 1234 base SELECT DATABASE()
+2020-12-29 14:07:58 INFO 1239 base {}
+2020-12-29 14:07:58 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 14:07:58 INFO 1239 base {}
+2020-12-29 14:07:58 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 14:07:58 INFO 1341 base {}
+2020-12-29 14:07:58 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 14:07:58 INFO 1341 base {}
+2020-12-29 14:07:58 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 14:07:58 INFO 1341 base {}
+2020-12-29 14:07:59 INFO 1234 base DESCRIBE `task`
+2020-12-29 14:07:59 INFO 1239 base {}
+2020-12-29 14:07:59 INFO 1234 base DESCRIBE `asset`
+2020-12-29 14:07:59 INFO 1239 base {}
+2020-12-29 14:07:59 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 14:07:59 INFO 1239 base {}
+2020-12-29 14:08:00 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 14:08:00 INFO 1239 base {}
+2020-12-29 14:08:00 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 14:08:00 INFO 1239 base {}
+2020-12-29 14:08:00 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 14:08:00 INFO 1239 base {}
+2020-12-29 14:08:00 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 14:08:00 INFO 1239 base {}
+2020-12-29 14:08:00 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 14:08:00 INFO 1239 base {}
+2020-12-29 14:08:01 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 14:08:01 INFO 1239 base {}
+2020-12-29 14:08:01 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 14:08:01 INFO 1239 base {}
+2020-12-29 14:08:01 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 14:08:01 INFO 1239 base {}
+2020-12-29 14:08:01 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 14:08:01 INFO 1239 base {}
+2020-12-29 14:08:01 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 14:08:01 INFO 1239 base {}
+2020-12-29 14:08:01 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 14:08:01 INFO 1239 base {}
+2020-12-29 14:08:02 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 14:08:02 INFO 1239 base {}
+2020-12-29 14:08:02 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 14:08:02 INFO 1239 base {}
+2020-12-29 14:08:02 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 14:08:02 INFO 1239 base {}
+2020-12-29 14:08:02 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 14:08:02 INFO 1239 base {}
+2020-12-29 14:08:02 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 14:08:02 INFO 1239 base {}
+2020-12-29 14:08:02 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 14:08:02 INFO 1239 base {}
+2020-12-29 14:08:03 INFO 727 base BEGIN (implicit)
+2020-12-29 14:08:03 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:08:03 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:08:03 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:08:03 INFO 1239 base {'id_1': 'hahaha122222222', 'param_1': 1}
+2020-12-29 14:08:03 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 14:08:03 INFO 1239 base {'ip_1': '10.110.31.4', 'ip_2': '10.110.31.3', 'ip_3': '10.110.31.9', 'param_1': 3}
+2020-12-29 14:22:56 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 14:22:56 INFO 1239 base {}
+2020-12-29 14:22:56 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 14:22:56 INFO 1239 base {}
+2020-12-29 14:22:57 INFO 1234 base SELECT DATABASE()
+2020-12-29 14:22:57 INFO 1239 base {}
+2020-12-29 14:22:57 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 14:22:57 INFO 1239 base {}
+2020-12-29 14:22:57 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 14:22:57 INFO 1341 base {}
+2020-12-29 14:22:57 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 14:22:57 INFO 1341 base {}
+2020-12-29 14:22:58 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 14:22:58 INFO 1341 base {}
+2020-12-29 14:22:58 INFO 1234 base DESCRIBE `task`
+2020-12-29 14:22:58 INFO 1239 base {}
+2020-12-29 14:22:58 INFO 747 base ROLLBACK
+2020-12-29 14:22:58 INFO 1234 base DESCRIBE `asset`
+2020-12-29 14:22:58 INFO 1239 base {}
+2020-12-29 14:22:58 INFO 747 base ROLLBACK
+2020-12-29 14:22:59 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 14:22:59 INFO 1239 base {}
+2020-12-29 14:22:59 INFO 747 base ROLLBACK
+2020-12-29 14:22:59 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 14:22:59 INFO 1239 base {}
+2020-12-29 14:22:59 INFO 747 base ROLLBACK
+2020-12-29 14:22:59 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 14:22:59 INFO 1239 base {}
+2020-12-29 14:23:00 INFO 747 base ROLLBACK
+2020-12-29 14:23:00 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 14:23:00 INFO 1239 base {}
+2020-12-29 14:23:00 INFO 747 base ROLLBACK
+2020-12-29 14:23:00 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 14:23:00 INFO 1239 base {}
+2020-12-29 14:23:00 INFO 747 base ROLLBACK
+2020-12-29 14:23:00 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 14:23:00 INFO 1239 base {}
+2020-12-29 14:23:01 INFO 747 base ROLLBACK
+2020-12-29 14:23:01 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 14:23:01 INFO 1239 base {}
+2020-12-29 14:23:01 INFO 747 base ROLLBACK
+2020-12-29 14:23:01 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 14:23:01 INFO 1239 base {}
+2020-12-29 14:23:01 INFO 747 base ROLLBACK
+2020-12-29 14:23:01 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 14:23:01 INFO 1239 base {}
+2020-12-29 14:23:02 INFO 747 base ROLLBACK
+2020-12-29 14:23:02 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 14:23:02 INFO 1239 base {}
+2020-12-29 14:23:02 INFO 747 base ROLLBACK
+2020-12-29 14:23:02 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 14:23:02 INFO 1239 base {}
+2020-12-29 14:23:02 INFO 747 base ROLLBACK
+2020-12-29 14:23:02 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 14:23:02 INFO 1239 base {}
+2020-12-29 14:23:03 INFO 747 base ROLLBACK
+2020-12-29 14:23:03 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 14:23:03 INFO 1239 base {}
+2020-12-29 14:23:03 INFO 747 base ROLLBACK
+2020-12-29 14:23:03 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 14:23:03 INFO 1239 base {}
+2020-12-29 14:23:03 INFO 747 base ROLLBACK
+2020-12-29 14:23:03 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 14:23:03 INFO 1239 base {}
+2020-12-29 14:23:04 INFO 747 base ROLLBACK
+2020-12-29 14:23:04 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 14:23:04 INFO 1239 base {}
+2020-12-29 14:23:04 INFO 747 base ROLLBACK
+2020-12-29 14:23:04 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 14:23:04 INFO 1239 base {}
+2020-12-29 14:23:04 INFO 747 base ROLLBACK
+2020-12-29 14:23:04 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 14:23:04 INFO 1239 base {}
+2020-12-29 14:23:05 INFO 747 base ROLLBACK
+2020-12-29 14:23:05 INFO 1234 base 
+CREATE TABLE task (
+	id VARCHAR(160) NOT NULL COMMENT '任务id', 
+	name TEXT NOT NULL COMMENT '任务名称', 
+	module VARCHAR(160) NOT NULL COMMENT '模块名称', 
+	args VARCHAR(160) NOT NULL COMMENT '模块名称', 
+	task_type VARCHAR(160) NOT NULL COMMENT '任务类型', 
+	created_date DATETIME COMMENT '创建时间', 
+	modify_date DATETIME COMMENT '修改时间', 
+	PRIMARY KEY (id)
+)CHARSET=utf8mb4 ENGINE=InnoDB COLLATE utf8mb4_general_ci
+
+
+2020-12-29 14:23:05 INFO 1239 base {}
+2020-12-29 14:23:05 INFO 769 base COMMIT
+2020-12-29 14:23:05 INFO 1234 base 
+CREATE TABLE playbook_task (
+	id VARCHAR(160) NOT NULL COMMENT '任务id', 
+	name VARCHAR(160) NOT NULL COMMENT '任务名称', 
+	playbook_content TEXT NOT NULL COMMENT '剧本内容', 
+	playbook_name VARCHAR(160) NOT NULL COMMENT '剧本名称', 
+	task_type VARCHAR(160) NOT NULL COMMENT '任务类型', 
+	created_date DATETIME COMMENT '创建时间', 
+	modify_date DATETIME COMMENT '修改时间', 
+	PRIMARY KEY (id)
+)CHARSET=utf8mb4 ENGINE=InnoDB COLLATE utf8mb4_general_ci
+
+
+2020-12-29 14:23:05 INFO 1239 base {}
+2020-12-29 14:23:06 INFO 769 base COMMIT
+2020-12-29 14:23:06 INFO 1234 base 
+CREATE TABLE asset (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	ip VARCHAR(160) NOT NULL COMMENT '资产IP', 
+	task_id VARCHAR(160) COMMENT '外键Task的id', 
+	result_table VARCHAR(160) COMMENT '结果表名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	modify_date DATETIME COMMENT '修改时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(task_id) REFERENCES task (id)
+)CHARSET=utf8mb4 ENGINE=InnoDB COLLATE utf8mb4_general_ci
+
+
+2020-12-29 14:23:06 INFO 1239 base {}
+2020-12-29 14:23:06 INFO 769 base COMMIT
+2020-12-29 14:23:06 INFO 1234 base CREATE INDEX random_ip ON asset (ip)
+2020-12-29 14:23:06 INFO 1239 base {}
+2020-12-29 14:23:06 INFO 769 base COMMIT
+2020-12-29 14:23:07 INFO 1234 base 
+CREATE TABLE playbook_asset (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	ip VARCHAR(160) NOT NULL COMMENT '资产IP', 
+	task_id VARCHAR(160) COMMENT '外键playbook_task的id', 
+	result_table VARCHAR(160) COMMENT '结果表名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	modify_date DATETIME COMMENT '修改时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(task_id) REFERENCES playbook_task (id)
+)CHARSET=utf8mb4 ENGINE=InnoDB COLLATE utf8mb4_general_ci
+
+
+2020-12-29 14:23:07 INFO 1239 base {}
+2020-12-29 14:23:07 INFO 769 base COMMIT
+2020-12-29 14:23:07 INFO 1234 base CREATE INDEX random_ip ON playbook_asset (ip)
+2020-12-29 14:23:07 INFO 1239 base {}
+2020-12-29 14:23:07 INFO 769 base COMMIT
+2020-12-29 14:23:08 INFO 1234 base 
+CREATE TABLE copy_success (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	dest VARCHAR(160) COMMENT '目标地址', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES asset (id)
+)
+
+
+2020-12-29 14:23:08 INFO 1239 base {}
+2020-12-29 14:23:08 INFO 769 base COMMIT
+2020-12-29 14:23:08 INFO 1234 base 
+CREATE TABLE copy_fail (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	msg TEXT COMMENT '执行信息', 
+	exception TEXT COMMENT '异常消息', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES asset (id)
+)
+
+
+2020-12-29 14:23:08 INFO 1239 base {}
+2020-12-29 14:23:08 INFO 769 base COMMIT
+2020-12-29 14:23:09 INFO 1234 base 
+CREATE TABLE shell_success (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	cmd TEXT COMMENT '执行命令', 
+	stdout TEXT COMMENT '标准输出', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES asset (id)
+)
+
+
+2020-12-29 14:23:09 INFO 1239 base {}
+2020-12-29 14:23:09 INFO 769 base COMMIT
+2020-12-29 14:23:09 INFO 1234 base 
+CREATE TABLE shell_fail (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	msg TEXT COMMENT '失败原因', 
+	cmd TEXT COMMENT '执行命令', 
+	stderr TEXT COMMENT '错误输出', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES asset (id)
+)
+
+
+2020-12-29 14:23:09 INFO 1239 base {}
+2020-12-29 14:23:09 INFO 769 base COMMIT
+2020-12-29 14:23:09 INFO 1234 base 
+CREATE TABLE unarchive_success (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	dest TEXT COMMENT '目标地址', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES asset (id)
+)
+
+
+2020-12-29 14:23:09 INFO 1239 base {}
+2020-12-29 14:23:10 INFO 769 base COMMIT
+2020-12-29 14:23:10 INFO 1234 base 
+CREATE TABLE unarchive_fail (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	msg TEXT COMMENT '解压信息', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES asset (id)
+)
+
+
+2020-12-29 14:23:10 INFO 1239 base {}
+2020-12-29 14:23:10 INFO 769 base COMMIT
+2020-12-29 14:23:11 INFO 1234 base 
+CREATE TABLE unreachable (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	msg TEXT COMMENT '执行信息', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES asset (id)
+)
+
+
+2020-12-29 14:23:11 INFO 1239 base {}
+2020-12-29 14:23:11 INFO 769 base COMMIT
+2020-12-29 14:23:11 INFO 1234 base 
+CREATE TABLE exec_timeout (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	module VARCHAR(160) COMMENT '模块', 
+	args VARCHAR(160) COMMENT '参数', 
+	msg TEXT COMMENT '超时日志', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES asset (id)
+)
+
+
+2020-12-29 14:23:11 INFO 1239 base {}
+2020-12-29 14:23:11 INFO 769 base COMMIT
+2020-12-29 14:23:11 INFO 1234 base 
+CREATE TABLE playbook_copy_success (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES playbook_asset (id)
+)
+
+
+2020-12-29 14:23:11 INFO 1239 base {}
+2020-12-29 14:23:12 INFO 769 base COMMIT
+2020-12-29 14:23:12 INFO 1234 base 
+CREATE TABLE playbook_copy_fail (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES playbook_asset (id)
+)
+
+
+2020-12-29 14:23:12 INFO 1239 base {}
+2020-12-29 14:23:12 INFO 769 base COMMIT
+2020-12-29 14:23:12 INFO 1234 base 
+CREATE TABLE playbook_shell_success (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES playbook_asset (id)
+)
+
+
+2020-12-29 14:23:12 INFO 1239 base {}
+2020-12-29 14:23:13 INFO 769 base COMMIT
+2020-12-29 14:23:13 INFO 1234 base 
+CREATE TABLE playbook_shell_fail (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES playbook_asset (id)
+)
+
+
+2020-12-29 14:23:13 INFO 1239 base {}
+2020-12-29 14:23:13 INFO 769 base COMMIT
+2020-12-29 14:23:13 INFO 1234 base 
+CREATE TABLE playbook_unarchive_success (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES playbook_asset (id)
+)
+
+
+2020-12-29 14:23:13 INFO 1239 base {}
+2020-12-29 14:23:14 INFO 769 base COMMIT
+2020-12-29 14:23:14 INFO 1234 base 
+CREATE TABLE playbook_unarchive_fail (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES playbook_asset (id)
+)
+
+
+2020-12-29 14:23:14 INFO 1239 base {}
+2020-12-29 14:23:14 INFO 769 base COMMIT
+2020-12-29 14:23:14 INFO 1234 base 
+CREATE TABLE playbook_unreachable (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES playbook_asset (id)
+)
+
+
+2020-12-29 14:23:14 INFO 1239 base {}
+2020-12-29 14:23:15 INFO 769 base COMMIT
+2020-12-29 14:23:15 INFO 1234 base 
+CREATE TABLE playbook_exec_timeout (
+	id INTEGER NOT NULL COMMENT '主键id' AUTO_INCREMENT, 
+	asset_id INTEGER COMMENT '外键Asset的id', 
+	result VARCHAR(160) COMMENT '结果名称', 
+	created_date DATETIME COMMENT '创建时间', 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(asset_id) REFERENCES playbook_asset (id)
+)
+
+
+2020-12-29 14:23:15 INFO 1239 base {}
+2020-12-29 14:23:15 INFO 769 base COMMIT
+2020-12-29 14:23:16 INFO 727 base BEGIN (implicit)
+2020-12-29 14:23:16 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:23:16 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:23:16 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 14:23:20 INFO 727 base BEGIN (implicit)
+2020-12-29 14:23:20 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 14:23:20 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 14:23:20 ERROR 617 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 16:26:41 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 16:26:41 INFO 1239 base {}
+2020-12-29 16:26:41 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 16:26:41 INFO 1239 base {}
+2020-12-29 16:26:41 INFO 1234 base SELECT DATABASE()
+2020-12-29 16:26:41 INFO 1239 base {}
+2020-12-29 16:26:42 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 16:26:42 INFO 1239 base {}
+2020-12-29 16:26:42 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 16:26:42 INFO 1341 base {}
+2020-12-29 16:26:42 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 16:26:42 INFO 1341 base {}
+2020-12-29 16:26:42 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 16:26:42 INFO 1341 base {}
+2020-12-29 16:27:01 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 16:27:01 INFO 1239 base {}
+2020-12-29 16:27:01 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 16:27:01 INFO 1239 base {}
+2020-12-29 16:27:01 INFO 1234 base SELECT DATABASE()
+2020-12-29 16:27:01 INFO 1239 base {}
+2020-12-29 16:27:02 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 16:27:02 INFO 1239 base {}
+2020-12-29 16:27:02 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 16:27:02 INFO 1341 base {}
+2020-12-29 16:27:02 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 16:27:02 INFO 1341 base {}
+2020-12-29 16:27:02 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 16:27:02 INFO 1341 base {}
+2020-12-29 16:27:30 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 16:27:30 INFO 1239 base {}
+2020-12-29 16:27:30 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 16:27:30 INFO 1239 base {}
+2020-12-29 16:27:30 INFO 1234 base SELECT DATABASE()
+2020-12-29 16:27:30 INFO 1239 base {}
+2020-12-29 16:27:30 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 16:27:30 INFO 1239 base {}
+2020-12-29 16:27:31 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 16:27:31 INFO 1341 base {}
+2020-12-29 16:27:31 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 16:27:31 INFO 1341 base {}
+2020-12-29 16:27:31 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 16:27:31 INFO 1341 base {}
+2020-12-29 17:33:56 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-29 17:33:56 INFO 1239 base {}
+2020-12-29 17:33:56 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-29 17:33:56 INFO 1239 base {}
+2020-12-29 17:33:57 INFO 1234 base SELECT DATABASE()
+2020-12-29 17:33:57 INFO 1239 base {}
+2020-12-29 17:33:57 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-29 17:33:57 INFO 1239 base {}
+2020-12-29 17:33:57 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-29 17:33:57 INFO 1341 base {}
+2020-12-29 17:33:57 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-29 17:33:57 INFO 1341 base {}
+2020-12-29 17:33:58 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-29 17:33:58 INFO 1341 base {}
+2020-12-29 17:33:58 INFO 1234 base DESCRIBE `task`
+2020-12-29 17:33:58 INFO 1239 base {}
+2020-12-29 17:33:58 INFO 1234 base DESCRIBE `asset`
+2020-12-29 17:33:58 INFO 1239 base {}
+2020-12-29 17:33:58 INFO 1234 base DESCRIBE `copy_success`
+2020-12-29 17:33:58 INFO 1239 base {}
+2020-12-29 17:33:59 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-29 17:33:59 INFO 1239 base {}
+2020-12-29 17:33:59 INFO 1234 base DESCRIBE `shell_success`
+2020-12-29 17:33:59 INFO 1239 base {}
+2020-12-29 17:33:59 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-29 17:33:59 INFO 1239 base {}
+2020-12-29 17:33:59 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-29 17:33:59 INFO 1239 base {}
+2020-12-29 17:33:59 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-29 17:33:59 INFO 1239 base {}
+2020-12-29 17:33:59 INFO 1234 base DESCRIBE `unreachable`
+2020-12-29 17:33:59 INFO 1239 base {}
+2020-12-29 17:34:00 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-29 17:34:00 INFO 1239 base {}
+2020-12-29 17:34:00 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-29 17:34:00 INFO 1239 base {}
+2020-12-29 17:34:00 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-29 17:34:00 INFO 1239 base {}
+2020-12-29 17:34:00 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-29 17:34:00 INFO 1239 base {}
+2020-12-29 17:34:00 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-29 17:34:00 INFO 1239 base {}
+2020-12-29 17:34:00 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-29 17:34:00 INFO 1239 base {}
+2020-12-29 17:34:01 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-29 17:34:01 INFO 1239 base {}
+2020-12-29 17:34:01 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-29 17:34:01 INFO 1239 base {}
+2020-12-29 17:34:01 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-29 17:34:01 INFO 1239 base {}
+2020-12-29 17:34:01 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-29 17:34:01 INFO 1239 base {}
+2020-12-29 17:34:01 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-29 17:34:01 INFO 1239 base {}
+2020-12-29 17:34:02 INFO 727 base BEGIN (implicit)
+2020-12-29 17:34:02 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 17:34:02 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 17:34:02 ERROR 620 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 17:34:25 INFO 727 base BEGIN (implicit)
+2020-12-29 17:34:25 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 17:34:25 INFO 1239 base {'ip_1': '10.110.31.3', 'param_1': 1}
+2020-12-29 17:34:25 ERROR 620 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 17:34:43 INFO 727 base BEGIN (implicit)
+2020-12-29 17:34:43 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 17:34:43 INFO 1239 base {'ip_1': '10.110.31.2', 'param_1': 1}
+2020-12-29 17:34:43 ERROR 620 views Get Playbook Result Error: 'NoneType' object has no attribute 'task_id'
+2020-12-29 17:35:00 INFO 727 base BEGIN (implicit)
+2020-12-29 17:35:00 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-29 17:35:00 INFO 1239 base {'id': 'hahaha122222222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 29, 17, 35, 0, 696351), 'modify_date': None}
+2020-12-29 17:35:00 INFO 769 base COMMIT
+2020-12-29 17:35:01 INFO 727 base BEGIN (implicit)
+2020-12-29 17:35:01 INFO 1234 base INSERT INTO playbook_asset (ip, task_id, created_date) VALUES (%(ip)s, %(task_id)s, %(created_date)s)
+2020-12-29 17:35:01 INFO 1239 base ({'ip': '10.110.31.4', 'task_id': 'hahaha122222222', 'created_date': datetime.datetime(2020, 12, 29, 17, 35, 1, 194530)}, {'ip': '10.110.31.3', 'task_id': 'hahaha122222222', 'created_date': datetime.datetime(2020, 12, 29, 17, 35, 1, 194544)}, {'ip': '10.110.31.9', 'task_id': 'hahaha122222222', 'created_date': datetime.datetime(2020, 12, 29, 17, 35, 1, 194552)})
+2020-12-29 17:35:01 INFO 769 base COMMIT
+2020-12-29 17:35:14 INFO 727 base BEGIN (implicit)
+2020-12-29 17:35:14 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-29 17:35:14 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-29 17:35:14 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-29 17:35:14 INFO 1239 base {'id_1': 'hahaha122222222', 'param_1': 1}
+2020-12-29 17:35:14 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-29 17:35:14 INFO 1239 base {'ip_1': '10.110.31.4', 'ip_2': '10.110.31.3', 'ip_3': '10.110.31.9', 'param_1': 3}

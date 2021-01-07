@@ -1,0 +1,8 @@
+2020-12-30 20:42:35 ERROR 58 views Sync task and ip to database Error: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'ad1221sd121ss1df1122' for key 'PRIMARY'")
+[SQL: INSERT INTO task (id, name, module, args, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(module)s, %(args)s, %(task_type)s, %(created_date)s, %(modify_date)s)]
+[parameters: {'id': 'ad1221sd121ss1df1122', 'name': '执行拷贝', 'module': 'shell', 'args': 'rm -f /tmp/fstab', 'task_type': 'adhoc', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 35, 132769), 'modify_date': None}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)
+2020-12-30 20:48:15 ERROR 533 views Sync task and ip to database Error: (pymysql.err.IntegrityError) (1062, "Duplicate entry 'hahaha122222222' for key 'PRIMARY'")
+[SQL: INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)]
+[parameters: {'id': 'hahaha122222222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 30, 20, 48, 15, 38096), 'modify_date': None}]
+(Background on this error at: http://sqlalche.me/e/13/gkpj)

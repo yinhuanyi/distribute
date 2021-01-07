@@ -1,0 +1,169 @@
+2020-12-30 20:17:20 INFO 1234 base SHOW VARIABLES LIKE 'sql_mode'
+2020-12-30 20:17:20 INFO 1239 base {}
+2020-12-30 20:17:20 INFO 1234 base SHOW VARIABLES LIKE 'lower_case_table_names'
+2020-12-30 20:17:20 INFO 1239 base {}
+2020-12-30 20:17:20 INFO 1234 base SELECT DATABASE()
+2020-12-30 20:17:20 INFO 1239 base {}
+2020-12-30 20:17:21 INFO 1234 base show collation where `Charset` = 'utf8mb4' and `Collation` = 'utf8mb4_bin'
+2020-12-30 20:17:21 INFO 1239 base {}
+2020-12-30 20:17:21 INFO 1340 base SELECT CAST('test plain returns' AS CHAR(60)) AS anon_1
+2020-12-30 20:17:21 INFO 1341 base {}
+2020-12-30 20:17:21 INFO 1340 base SELECT CAST('test unicode returns' AS CHAR(60)) AS anon_1
+2020-12-30 20:17:21 INFO 1341 base {}
+2020-12-30 20:17:21 INFO 1340 base SELECT CAST('test collated returns' AS CHAR CHARACTER SET utf8mb4) COLLATE utf8mb4_bin AS anon_1
+2020-12-30 20:17:21 INFO 1341 base {}
+2020-12-30 20:17:22 INFO 1234 base DESCRIBE `task`
+2020-12-30 20:17:22 INFO 1239 base {}
+2020-12-30 20:17:22 INFO 1234 base DESCRIBE `asset`
+2020-12-30 20:17:22 INFO 1239 base {}
+2020-12-30 20:17:22 INFO 1234 base DESCRIBE `copy_success`
+2020-12-30 20:17:22 INFO 1239 base {}
+2020-12-30 20:17:22 INFO 1234 base DESCRIBE `copy_fail`
+2020-12-30 20:17:22 INFO 1239 base {}
+2020-12-30 20:17:22 INFO 1234 base DESCRIBE `shell_success`
+2020-12-30 20:17:22 INFO 1239 base {}
+2020-12-30 20:17:22 INFO 1234 base DESCRIBE `shell_fail`
+2020-12-30 20:17:22 INFO 1239 base {}
+2020-12-30 20:17:23 INFO 1234 base DESCRIBE `unarchive_success`
+2020-12-30 20:17:23 INFO 1239 base {}
+2020-12-30 20:17:23 INFO 1234 base DESCRIBE `unarchive_fail`
+2020-12-30 20:17:23 INFO 1239 base {}
+2020-12-30 20:17:23 INFO 1234 base DESCRIBE `unreachable`
+2020-12-30 20:17:23 INFO 1239 base {}
+2020-12-30 20:17:23 INFO 1234 base DESCRIBE `exec_timeout`
+2020-12-30 20:17:23 INFO 1239 base {}
+2020-12-30 20:17:23 INFO 1234 base DESCRIBE `playbook_task`
+2020-12-30 20:17:23 INFO 1239 base {}
+2020-12-30 20:17:23 INFO 1234 base DESCRIBE `playbook_asset`
+2020-12-30 20:17:23 INFO 1239 base {}
+2020-12-30 20:17:24 INFO 1234 base DESCRIBE `playbook_copy_success`
+2020-12-30 20:17:24 INFO 1239 base {}
+2020-12-30 20:17:24 INFO 1234 base DESCRIBE `playbook_copy_fail`
+2020-12-30 20:17:24 INFO 1239 base {}
+2020-12-30 20:17:24 INFO 1234 base DESCRIBE `playbook_shell_success`
+2020-12-30 20:17:24 INFO 1239 base {}
+2020-12-30 20:17:24 INFO 1234 base DESCRIBE `playbook_shell_fail`
+2020-12-30 20:17:24 INFO 1239 base {}
+2020-12-30 20:17:24 INFO 1234 base DESCRIBE `playbook_unarchive_success`
+2020-12-30 20:17:24 INFO 1239 base {}
+2020-12-30 20:17:24 INFO 1234 base DESCRIBE `playbook_unarchive_fail`
+2020-12-30 20:17:24 INFO 1239 base {}
+2020-12-30 20:17:25 INFO 1234 base DESCRIBE `playbook_unreachable`
+2020-12-30 20:17:25 INFO 1239 base {}
+2020-12-30 20:17:25 INFO 1234 base DESCRIBE `playbook_exec_timeout`
+2020-12-30 20:17:25 INFO 1239 base {}
+2020-12-30 20:17:25 INFO 727 base BEGIN (implicit)
+2020-12-30 20:17:25 INFO 1234 base SELECT task.id AS task_id, task.name AS task_name, task.module AS task_module, task.args AS task_args, task.task_type AS task_task_type, task.created_date AS task_created_date, task.modify_date AS task_modify_date 
+FROM task 
+WHERE task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-30 20:17:25 INFO 1239 base {'id_1': 'ad1221sd121ss1df1122', 'param_1': 1}
+2020-12-30 20:17:25 INFO 1234 base SELECT asset.result_table AS asset_result_table 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s GROUP BY asset.result_table
+2020-12-30 20:17:25 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df1122'}
+2020-12-30 20:17:25 INFO 1234 base SELECT asset.id AS asset_id, asset.ip AS asset_ip 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s
+2020-12-30 20:17:25 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df1122'}
+2020-12-30 20:17:26 INFO 747 base ROLLBACK
+2020-12-30 20:17:33 INFO 727 base BEGIN (implicit)
+2020-12-30 20:17:33 INFO 1234 base SELECT task.id AS task_id, task.name AS task_name, task.module AS task_module, task.args AS task_args, task.task_type AS task_task_type, task.created_date AS task_created_date, task.modify_date AS task_modify_date 
+FROM task 
+WHERE task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-30 20:17:33 INFO 1239 base {'id_1': 'ad1221sd121ss1df1122', 'param_1': 1}
+2020-12-30 20:17:33 INFO 1234 base SELECT asset.result_table AS asset_result_table 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s GROUP BY asset.result_table
+2020-12-30 20:17:33 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df1122'}
+2020-12-30 20:17:33 INFO 1234 base SELECT asset.id AS asset_id, asset.ip AS asset_ip 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s
+2020-12-30 20:17:33 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df1122'}
+2020-12-30 20:17:34 INFO 747 base ROLLBACK
+2020-12-30 20:42:27 INFO 727 base BEGIN (implicit)
+2020-12-30 20:42:27 INFO 1234 base SELECT task.id AS task_id, task.name AS task_name, task.module AS task_module, task.args AS task_args, task.task_type AS task_task_type, task.created_date AS task_created_date, task.modify_date AS task_modify_date 
+FROM task 
+WHERE task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-30 20:42:27 INFO 1239 base {'id_1': 'ad1221sd121ss1df1122', 'param_1': 1}
+2020-12-30 20:42:27 INFO 1234 base SELECT asset.result_table AS asset_result_table 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s GROUP BY asset.result_table
+2020-12-30 20:42:27 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df1122'}
+2020-12-30 20:42:27 INFO 1234 base SELECT asset.id AS asset_id, asset.ip AS asset_ip 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s
+2020-12-30 20:42:27 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df1122'}
+2020-12-30 20:42:27 INFO 747 base ROLLBACK
+2020-12-30 20:42:35 INFO 727 base BEGIN (implicit)
+2020-12-30 20:42:35 INFO 1234 base INSERT INTO task (id, name, module, args, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(module)s, %(args)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-30 20:42:35 INFO 1239 base {'id': 'ad1221sd121ss1df1122', 'name': '执行拷贝', 'module': 'shell', 'args': 'rm -f /tmp/fstab', 'task_type': 'adhoc', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 35, 132769), 'modify_date': None}
+2020-12-30 20:42:35 INFO 747 base ROLLBACK
+2020-12-30 20:42:42 INFO 727 base BEGIN (implicit)
+2020-12-30 20:42:42 INFO 1234 base INSERT INTO task (id, name, module, args, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(module)s, %(args)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-30 20:42:42 INFO 1239 base {'id': 'ad1221sd121ss1df11222', 'name': '执行拷贝', 'module': 'shell', 'args': 'rm -f /tmp/fstab', 'task_type': 'adhoc', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 42, 751662), 'modify_date': None}
+2020-12-30 20:42:42 INFO 769 base COMMIT
+2020-12-30 20:42:43 INFO 727 base BEGIN (implicit)
+2020-12-30 20:42:43 INFO 1234 base INSERT INTO asset (ip, task_id, created_date) VALUES (%(ip)s, %(task_id)s, %(created_date)s)
+2020-12-30 20:42:43 INFO 1239 base ({'ip': '10.110.31.1', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271587)}, {'ip': '10.110.31.2', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271598)}, {'ip': '10.110.31.3', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271605)}, {'ip': '10.110.31.4', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271612)}, {'ip': '10.110.31.5', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271619)}, {'ip': '10.110.31.6', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271625)}, {'ip': '10.110.31.7', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271632)}, {'ip': '10.110.31.8', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271638)}  ... displaying 10 of 39 total bound parameter sets ...  {'ip': '10.110.31.12', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271831)}, {'ip': '10.110.31.13', 'task_id': 'ad1221sd121ss1df11222', 'created_date': datetime.datetime(2020, 12, 30, 20, 42, 43, 271838)})
+2020-12-30 20:42:43 INFO 769 base COMMIT
+2020-12-30 20:42:54 INFO 727 base BEGIN (implicit)
+2020-12-30 20:42:54 INFO 1234 base SELECT task.id AS task_id, task.name AS task_name, task.module AS task_module, task.args AS task_args, task.task_type AS task_task_type, task.created_date AS task_created_date, task.modify_date AS task_modify_date 
+FROM task 
+WHERE task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-30 20:42:54 INFO 1239 base {'id_1': 'ad1221sd121ss1df11222', 'param_1': 1}
+2020-12-30 20:42:54 INFO 1234 base SELECT asset.result_table AS asset_result_table 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s GROUP BY asset.result_table
+2020-12-30 20:42:54 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df11222'}
+2020-12-30 20:42:54 INFO 1234 base SELECT asset.id AS asset_id, asset.ip AS asset_ip 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s
+2020-12-30 20:42:54 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df11222'}
+2020-12-30 20:42:54 INFO 1234 base SELECT shell_success.id AS shell_success_id, shell_success.asset_id AS shell_success_asset_id, shell_success.cmd AS shell_success_cmd, shell_success.stdout AS shell_success_stdout, shell_success.result AS shell_success_result, shell_success.created_date AS shell_success_created_date 
+FROM shell_success 
+WHERE shell_success.asset_id IN (%(asset_id_1)s, %(asset_id_2)s, %(asset_id_3)s, %(asset_id_4)s, %(asset_id_5)s, %(asset_id_6)s, %(asset_id_7)s, %(asset_id_8)s, %(asset_id_9)s, %(asset_id_10)s, %(asset_id_11)s, %(asset_id_12)s, %(asset_id_13)s, %(asset_id_14)s, %(asset_id_15)s, %(asset_id_16)s, %(asset_id_17)s, %(asset_id_18)s, %(asset_id_19)s, %(asset_id_20)s, %(asset_id_21)s, %(asset_id_22)s, %(asset_id_23)s, %(asset_id_24)s, %(asset_id_25)s, %(asset_id_26)s, %(asset_id_27)s, %(asset_id_28)s, %(asset_id_29)s, %(asset_id_30)s, %(asset_id_31)s, %(asset_id_32)s, %(asset_id_33)s, %(asset_id_34)s, %(asset_id_35)s, %(asset_id_36)s, %(asset_id_37)s, %(asset_id_38)s, %(asset_id_39)s)
+2020-12-30 20:42:54 INFO 1239 base {'asset_id_1': 40, 'asset_id_2': 41, 'asset_id_3': 42, 'asset_id_4': 43, 'asset_id_5': 44, 'asset_id_6': 45, 'asset_id_7': 46, 'asset_id_8': 47, 'asset_id_9': 48, 'asset_id_10': 49, 'asset_id_11': 50, 'asset_id_12': 51, 'asset_id_13': 52, 'asset_id_14': 53, 'asset_id_15': 54, 'asset_id_16': 55, 'asset_id_17': 56, 'asset_id_18': 57, 'asset_id_19': 58, 'asset_id_20': 59, 'asset_id_21': 60, 'asset_id_22': 61, 'asset_id_23': 62, 'asset_id_24': 63, 'asset_id_25': 64, 'asset_id_26': 65, 'asset_id_27': 66, 'asset_id_28': 67, 'asset_id_29': 68, 'asset_id_30': 69, 'asset_id_31': 70, 'asset_id_32': 71, 'asset_id_33': 72, 'asset_id_34': 73, 'asset_id_35': 74, 'asset_id_36': 75, 'asset_id_37': 76, 'asset_id_38': 77, 'asset_id_39': 78}
+2020-12-30 20:42:55 INFO 747 base ROLLBACK
+2020-12-30 20:45:44 INFO 727 base BEGIN (implicit)
+2020-12-30 20:45:44 INFO 1234 base SELECT task.id AS task_id, task.name AS task_name, task.module AS task_module, task.args AS task_args, task.task_type AS task_task_type, task.created_date AS task_created_date, task.modify_date AS task_modify_date 
+FROM task 
+WHERE task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-30 20:45:44 INFO 1239 base {'id_1': 'ad1221sd121ss1df11222', 'param_1': 1}
+2020-12-30 20:45:44 INFO 1234 base SELECT asset.result_table AS asset_result_table 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s GROUP BY asset.result_table
+2020-12-30 20:45:44 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df11222'}
+2020-12-30 20:45:44 INFO 1234 base SELECT asset.id AS asset_id, asset.ip AS asset_ip 
+FROM asset 
+WHERE asset.task_id = %(task_id_1)s
+2020-12-30 20:45:44 INFO 1239 base {'task_id_1': 'ad1221sd121ss1df11222'}
+2020-12-30 20:45:44 INFO 1234 base SELECT shell_success.id AS shell_success_id, shell_success.asset_id AS shell_success_asset_id, shell_success.cmd AS shell_success_cmd, shell_success.stdout AS shell_success_stdout, shell_success.result AS shell_success_result, shell_success.created_date AS shell_success_created_date 
+FROM shell_success 
+WHERE shell_success.asset_id IN (%(asset_id_1)s, %(asset_id_2)s, %(asset_id_3)s, %(asset_id_4)s, %(asset_id_5)s, %(asset_id_6)s, %(asset_id_7)s, %(asset_id_8)s, %(asset_id_9)s, %(asset_id_10)s, %(asset_id_11)s, %(asset_id_12)s, %(asset_id_13)s, %(asset_id_14)s, %(asset_id_15)s, %(asset_id_16)s, %(asset_id_17)s, %(asset_id_18)s, %(asset_id_19)s, %(asset_id_20)s, %(asset_id_21)s, %(asset_id_22)s, %(asset_id_23)s, %(asset_id_24)s, %(asset_id_25)s, %(asset_id_26)s, %(asset_id_27)s, %(asset_id_28)s, %(asset_id_29)s, %(asset_id_30)s, %(asset_id_31)s, %(asset_id_32)s, %(asset_id_33)s, %(asset_id_34)s, %(asset_id_35)s, %(asset_id_36)s, %(asset_id_37)s, %(asset_id_38)s, %(asset_id_39)s)
+2020-12-30 20:45:44 INFO 1239 base {'asset_id_1': 40, 'asset_id_2': 41, 'asset_id_3': 42, 'asset_id_4': 43, 'asset_id_5': 44, 'asset_id_6': 45, 'asset_id_7': 46, 'asset_id_8': 47, 'asset_id_9': 48, 'asset_id_10': 49, 'asset_id_11': 50, 'asset_id_12': 51, 'asset_id_13': 52, 'asset_id_14': 53, 'asset_id_15': 54, 'asset_id_16': 55, 'asset_id_17': 56, 'asset_id_18': 57, 'asset_id_19': 58, 'asset_id_20': 59, 'asset_id_21': 60, 'asset_id_22': 61, 'asset_id_23': 62, 'asset_id_24': 63, 'asset_id_25': 64, 'asset_id_26': 65, 'asset_id_27': 66, 'asset_id_28': 67, 'asset_id_29': 68, 'asset_id_30': 69, 'asset_id_31': 70, 'asset_id_32': 71, 'asset_id_33': 72, 'asset_id_34': 73, 'asset_id_35': 74, 'asset_id_36': 75, 'asset_id_37': 76, 'asset_id_38': 77, 'asset_id_39': 78}
+2020-12-30 20:45:45 INFO 747 base ROLLBACK
+2020-12-30 20:48:15 INFO 727 base BEGIN (implicit)
+2020-12-30 20:48:15 INFO 1234 base INSERT INTO playbook_task (id, name, playbook_content, playbook_name, task_type, created_date, modify_date) VALUES (%(id)s, %(name)s, %(playbook_content)s, %(playbook_name)s, %(task_type)s, %(created_date)s, %(modify_date)s)
+2020-12-30 20:48:15 INFO 1239 base {'id': 'hahaha122222222', 'name': '部署agent', 'playbook_content': '\n- hosts: target_hosts\n  become: yes\n  gather_facts: false\n  tasks:\n  - name: create dir\n    shell: rm -fr /root/hello\n\n  - name: create file in dir\n    shell: touch /root/hello.txt\n\n  - name: 安装apache2\n    shell: apt purge -y apache2\n', 'playbook_name': 'deploy-agent', 'task_type': 'playbook', 'created_date': datetime.datetime(2020, 12, 30, 20, 48, 15, 38096), 'modify_date': None}
+2020-12-30 20:48:15 INFO 747 base ROLLBACK
+2020-12-30 20:50:32 INFO 727 base BEGIN (implicit)
+2020-12-30 20:50:32 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip = %(ip_1)s 
+ LIMIT %(param_1)s
+2020-12-30 20:50:32 INFO 1239 base {'ip_1': '10.110.31.9', 'param_1': 1}
+2020-12-30 20:50:32 INFO 1234 base SELECT playbook_task.playbook_content AS playbook_task_playbook_content 
+FROM playbook_task 
+WHERE playbook_task.id = %(id_1)s 
+ LIMIT %(param_1)s
+2020-12-30 20:50:32 INFO 1239 base {'id_1': 'hahaha122222222', 'param_1': 1}
+2020-12-30 20:50:32 INFO 1234 base SELECT playbook_asset.id AS playbook_asset_id, playbook_asset.ip AS playbook_asset_ip, playbook_asset.task_id AS playbook_asset_task_id, playbook_asset.result_table AS playbook_asset_result_table, playbook_asset.created_date AS playbook_asset_created_date, playbook_asset.modify_date AS playbook_asset_modify_date 
+FROM playbook_asset 
+WHERE playbook_asset.ip IN (%(ip_1)s, %(ip_2)s, %(ip_3)s) ORDER BY playbook_asset.id DESC 
+ LIMIT %(param_1)s
+2020-12-30 20:50:32 INFO 1239 base {'ip_1': '10.110.31.4', 'ip_2': '10.110.31.3', 'ip_3': '10.110.31.9', 'param_1': 3}
