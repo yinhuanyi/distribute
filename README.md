@@ -44,7 +44,9 @@
 
 #### 二：部署
 
-> `(一) Ubuntu部署distribute(目前项目只适合在Ubuntu上部署，后续将支持在Centos上部署)`
+- Distribute可以部署一台，也可以部署多台，多台Distribute目的是提高Distribute的可用性
+
+> `(一) Ubuntu部署一台Distribute(目前项目只适合在Ubuntu上部署，后续将支持在Centos上部署)`
 
 - 创建项目目录
 
@@ -56,82 +58,56 @@ mkdir /app
 
 ```
 cd /app
-git clone https://github.com/yinhuanyi/execute-engine.git
-cd execute-engine
+git clone https://github.com/yinhuanyi/distribute.git
+cd distribute
 ```
 
 - 修改 conf/server.conf 配置文件
 
 ```
-# Kafka集群消费指令集
+# Kafka集群
 [Kafka_Cluster]
-# KAFKA地址和端口或KAFKA集群地址和端口，例如192.168.100.11:9092
 BOOTSTRAP_SERVERS = KAFKA_IP:KAFKA_PORT
-# 消费者组ID，如果部署了多台execute-engine，GROUP_ID应该保持一致
 GROUP_ID = adhoc
-# 始终消费Kafka中的最新数据
 AUTO_OFFSET_RESET = latest
 # Kafka创建的topic名称，与distribute中的TOPIC_NAME一致
 TOPIC = TOPIC_NAME
 
-# Zabbix监控exec-engine 发送心跳包
-[Zabbix]
-# zabbix的server端或proxy端IP
-IP = ZABBIX_SERVER_IP
-# Zabbix端口
-ZABBIX_PORT = 10051
-# 自定义trapper监控项
-ITEM = exec.engine.ping
-
-# 执行结果存储
-[Fil_EXEC_MySQL]
+# Execute-engine和Distribute数据库是同一个数据库
+[MySQL]
 # MySQL地址
 IP = MySQL_IP
 # MySQL端口
 PORT = 3306
 # 数据库名称
-DATABASE = execute_engine
+DATABASE = execute_engine
 # 数据库用户
 USER = root
-# 数据库密码(加密后的密码：加密使用execute-engine/utils/encrypt_decrypt.py脚本对密码进行加密和解密)
-PASSWORD = 630898019a777c984645f0b01d3fe3d4ee2bacdc1aec34995218ff8823978401
+(加密后的密码：加密使用execute-engine/utils/encrypt_decrypt.py脚本对密码进行加密和解密)
+PASSWORD = MySQL_PASSWORD
 
-[Ansible]
-# 执行任务时，ssh连接用户
-SSH_USER = admin
-# 执行任务时，ssh连接用户的密码
-SSH_PASSWORD = admin
-# 执行任务时，ssh连接用户的sudo密码
-SSH_SUDO_PASSWORD = admin
+[Exec_Engine]
+# ip列表切割单元
+NUMBER = 30
 
-# 进程执行等待时间
-[Data_Send]
-# 心跳信息上报时间间隔
-ZABBIX = 10
-# 消费者消费的时间间隔
-EXEC = 1
-
-# Distribute的IP地址
-DISTRIBUTE_IP = IP
+[Gitlab]
+# Gitlab IP地址
+IP = Gitlab_IP
+# 需要部署的应用程序或配置文件所在的Gitlab组，如果没有，保留空即可
+GROUP = ci-cd
 ```
 
-- 将Systemd的unit file脚本拷贝到/lib/systemd/system目录下，让unit file重新生效
+- 填写服务器上id_rsa私钥内容
+
+- 构建docker镜像，并运行容器
 
 ```
-cd /app
-cp -f execute-engine.service /lib/systemd/system/
-systemctl daemon-reload
+cd /app/distribute
+bash deployment.sh
 ```
 
-- 启动、停止、查看execute-engine
+- 查看容器
 
 ```
-# 启动，第一次启动会需要一些时间，因为会安装部分依赖
-systemctl start execute-engine
-
-# 停止
-systemctl stop execute-engine
-
-# 查看状态
-systemctl status execute-engine
+docker ps 
 ```
