@@ -80,7 +80,7 @@ IP = MySQL_IP
 # MySQL端口
 PORT = 3306
 # 数据库名称
-DATABASE = execute_engine
+DATABASE = execute_engine
 # 数据库用户
 USER = root
 (加密后的密码：加密使用execute-engine/utils/encrypt_decrypt.py脚本对密码进行加密和解密)
