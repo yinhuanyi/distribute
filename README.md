@@ -99,7 +99,7 @@ GROUP = ci-cd
 
 - 填写服务器上id_rsa私钥内容
 
-- 构建docker镜像，并运行容器
+- 构建docker镜像，并运行容器，默认端口是8007，如需修改现有修改entrypoint.sh、deployment.sh和distribute.dockerfile脚本的端口
 
 ```
 cd /app/distribute
